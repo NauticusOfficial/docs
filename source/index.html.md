@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - <a href='mailto:support@nauticus.exchange'>Contact Support.</a>
+  - <a href='mailto:support@nauticus.exchange'>Contact support@nauticus.exchange</a>
 
 includes:
   - errors
