@@ -92,7 +92,7 @@ The call returns a  !"#$%&'($)* (+'( (+" ,-"# .)//$*/ $* +'- 0""* ',(+"*($&'("12
 
 ###### Here is how the two-factor authentication process works:
 
-1. Call [**WebAuthenticateUser**](#_bookmark27). The response includes values for *TwoFAType* and *TwoFAToken*. For example, *TwoFAType* may return “Google,” and the *TwoFAToken* then returns a Google-appropriate token (which in this case would be a QR code).
+1. Call **WebAuthenticateUser**. The response includes values for *TwoFAType* and *TwoFAToken*. For example, *TwoFAType* may return “Google,” and the *TwoFAToken* then returns a Google-appropriate token (which in this case would be a QR code).
 2. Enter the *TwoFAToken* into the two-factor authentication program, for example, Google
 
 Authenticator. The authentication program returns a different token.
