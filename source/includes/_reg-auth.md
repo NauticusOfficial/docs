@@ -1,4 +1,10 @@
-# WebAuthenticateUser
+# Registration and authentication
+
+
+
+
+
+## WebAuthenticateUser
 
 #### No authentication required
 
@@ -6,7 +12,7 @@
 
 
 
-## Request	
+### Request	
 
 ```
 	{
@@ -204,11 +210,7 @@ Where:
 
 
 
-------
-
-**Note:**      Passwords must be longer than eight characters, with at least one case change (upper-to-lower/ lower-to-upper) and one numeral. Venue operators may impose additional rules.
-
-------
+`Note: Passwords must be longer than eight characters, with at least one case change (upper-to-lower/ lower-to-upper) and one numeral. Venue operators may impose additional rules.`
 
 
 
