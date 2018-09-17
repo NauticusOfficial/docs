@@ -153,7 +153,6 @@ Where:
 
 
 
-
 ## LogOut
 
 #### No authentication required

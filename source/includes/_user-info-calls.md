@@ -23,7 +23,6 @@ The request for **GetAvailablePermissionList** does not require a UserId. It ret
 ```
 
 
-
 ### Response
 
 A successful response returns an alphabetically sorted list of all permissions that can be assigned by an administrator or superuser.
@@ -51,7 +50,6 @@ A successful response returns an alphabetically sorted list of all permissions t
 
 ## GetUserConfig
 
- 
 
 **GetUserConfig** returns the list of key/value pairs set by the **SetUserConfig** call and associated with a user record. A trading venue can use *Config* strings to store custom information or compliance information with a user record.
 
