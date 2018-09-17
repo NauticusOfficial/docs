@@ -32,7 +32,7 @@ Where:
 
  
 
-## Response
+### Response
 
 Unsuccessful response:
 
@@ -76,7 +76,7 @@ Where:
 
 
 
-# Authenticate2FA
+## Authenticate2FA
 
 #### No authentication required
 
@@ -103,7 +103,7 @@ program (shown as *YourCode* in the request example below).
 
 
 
-## Request
+### Request
 
 ```
 	{
@@ -121,7 +121,7 @@ Where:
 
 
 
-## Response
+### Response
 
 ```
 	{
@@ -154,7 +154,7 @@ Where:
 
 
 
-# LogOut
+## LogOut
 
 #### No authentication required
 
@@ -164,7 +164,7 @@ Where:
 
 
 
-## Request
+### Request
 
 `There is no payload for a *Logout* request.`
 
@@ -174,7 +174,7 @@ Where:
 
 
 
-## Response
+### Response
 
 ```
 	{
@@ -202,7 +202,7 @@ Where:
 
 
 
-# ResetPassword
+## ResetPassword
 
   
 
@@ -214,7 +214,7 @@ Where:
 
 
 
-## Request
+### Request
 
 ```
 	{
@@ -232,7 +232,7 @@ Where:
 
 
 
-## Response
+### Response
 
 ```
 	{
