@@ -65,13 +65,11 @@ Where:
 | SessionToken  | **string.** SessionToken uniquely identifies the session on the OMS. By returning the SessionToken in the response, the user can log in again if the session is interrupted without going through two-factor authentication. |
 | UserId        | **integer.** Returns the user ID of the authenticated user   |
 
-------
+
 
 ###### *See Also:* 
 
 **Authenticate2FA, LogOut**
-
-------
 
 
 
@@ -153,13 +151,9 @@ Where:
 
 
 
-------
-
 ###### *See Also*
 
 **WebAuthenticateUser, LogOut**
-
-------
 
 
 
@@ -209,13 +203,11 @@ Where:
 
 
 
-------
-
 ###### *See Also:*
 
 **WebAuthenticateUser, Authenticate2FA**
 
-------
+
 
 
 
@@ -273,11 +265,7 @@ Where:
 
 
 
-------
-
 ###### *See Also*
 
 **RegisterNewUser**
-
-------
 

@@ -43,15 +43,11 @@ A successful response returns an alphabetically sorted list of all permissions t
 
  
 
-
-
-------
-
 ###### *See Also*
 
 **GetUserPermissions**
 
-------
+
 
  
 
@@ -65,12 +61,8 @@ A successful response returns an alphabetically sorted list of all permissions t
 
   
 
-------
-
 **Note:** In **RegisterNewUser** (and only in **RegisterNewUser**), the key identifier of the *config* string is called
 *name.*
-
-------
 
 
 
@@ -115,15 +107,7 @@ An unsuccessful call to **GetUserConfig** returns an error code. See “Standard
 
   
 
-
-
-------
-
 ###### *See Also*
 
 **RegisterNewUser, SetUserConfig** 
-
-------
-
- 
 
