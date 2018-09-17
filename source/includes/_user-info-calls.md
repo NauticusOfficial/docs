@@ -155,12 +155,12 @@ Where:
 | ---------------- | ------------------------------------------------------------ |
 | UserId           | **integer.** ID number of   the user whose information is being set. |
 | UserName         | **string.** Log-in name   of the user; “jsmith”.             |
-| Email            | **string.** Email address   of the user; [“person@company.com”.](mailto:person@company.com) |
+| Email            | **string.** Email address   of the user; “person@company.com”. |
 | PasswordHash     | **string.** Not currently   used. Returns an empty string.   |
 | PendingEmailCode | **string.** Usually   contains an empty string. During the time that a new user has been sent a   registration email and before the user clicks the confirmation link, this   pair contains a GUID — a globally unique ID string.. |
 | EmailVerified    | **Boolean.** Has your   organization verified this email as correct and operational?   *True*   if   yes; *false* if no. Defaults to *false*. |
 | AccountId        | **integer.** The ID of the   default account with which the user is associated. |
-| DateTimeCreated | **long integer.** The   date and time at which this user record was created, in ISO 8601 format. See [“Time–   and Date-Stamp Formats” on page 8](#_bookmark15). |
+| DateTimeCreated | **long integer.** The   date and time at which this user record was created, in ISO 8601 format. See “Time–   and Date-Stamp Formats”. |
 | AffiliatedId    | **integer.** The ID of an   affiliated organization, if the user comes from an affiliated link. This is   set to 0 if the user it not associated with an affiliated organization. |
 | RefererId       | **integer.** Captures the   ID of the person who referred this account member to the   trading venue, usually for marketing   purposes. Returns 0 if no referrer. |
 | OMSId           | **integer.** The ID of the Order   Management System with which the user is associated. |
