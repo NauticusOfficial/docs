@@ -166,7 +166,7 @@ Where:
 | OMSId           | **integer.** The ID of the Order   Management System with which the user is associated. |
 | Use2FA          | **Boolean.** *True* if   the user must use two-factor authentication; *false* if the user does not need to use two-factor authentication.   Defaults to *false*. |
 | Salt            | **string.** Reserved for   future use. Currently returns an empty string. |
-| PendingCodeTime | **long integer.**   A   date and time in ISO 8601 format. Reserved. [See “Time– and](#_bookmark15)   [Date-Stamp Formats” on page 8](#_bookmark15). |
+| PendingCodeTime | **long integer.**   A   date and time in ISO 8601 format. Reserved. See “Time– and  Date-Stamp Formats” . |
 
 
 
@@ -192,6 +192,10 @@ administrator or superuser.
 		“UserId”: 1,
 	}
 ```
+
+
+
+
 
 
 
