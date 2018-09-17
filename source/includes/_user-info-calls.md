@@ -8,7 +8,7 @@ An administrator or superuser can set permissions for each user on an API-call b
 
 
 
-### Request
+## Request
 
 The request for **GetAvailablePermissionList** does not require a UserId. It returns a list of all permissions available.
 
@@ -16,9 +16,9 @@ The request for **GetAvailablePermissionList** does not require a UserId. It ret
 	{ }
 ```
 
- 
 
-### Response
+
+## Response
 
 A successful response returns an alphabetically sorted list of all permissions that can be assigned by an administrator or superuser.
 
@@ -41,16 +41,6 @@ A successful response returns an alphabetically sorted list of all permissions t
 	]
 ```
 
- 
-
-###### *See Also*
-
-**GetUserPermissions**
-
-
-
- 
-
 
 
 # GetUserConfig
@@ -66,7 +56,7 @@ A successful response returns an alphabetically sorted list of all permissions t
 
 
 
-### Request
+## Request
 
 ```
 	{
@@ -86,7 +76,7 @@ Where:
 
 
 
-### Response
+## Response
 
 A successful call to **GetUserConfig** returns an array of the current list of *Config* key/value pairs.
 
@@ -105,9 +95,4 @@ An unsuccessful call to **GetUserConfig** returns an error code. See “Standard
 	]
 ```
 
-  
-
-###### *See Also*
-
-**RegisterNewUser, SetUserConfig** 
-
+ 

@@ -6,7 +6,7 @@
 
 
 
-### Request	
+## Request	
 
 ```
 	{
@@ -26,7 +26,7 @@ Where:
 
  
 
-### Response
+## Response
 
 Unsuccessful response:
 
@@ -67,11 +67,6 @@ Where:
 
 
 
-###### *See Also:* 
-
-**Authenticate2FA, LogOut**
-
-
 
 
 
@@ -102,7 +97,7 @@ program (shown as *YourCode* in the request example below).
 
 
 
-### Request
+## Request
 
 ```
 	{
@@ -120,7 +115,7 @@ Where:
 
 
 
-### Response
+## Response
 
 ```
 	{
@@ -151,12 +146,6 @@ Where:
 
 
 
-###### *See Also*
-
-**WebAuthenticateUser, LogOut**
-
-
-
 
 
 # LogOut
@@ -169,7 +158,7 @@ Where:
 
 
 
-### Request
+## Request
 
 `There is no payload for a *Logout* request.`
 
@@ -179,7 +168,7 @@ Where:
 
 
 
-### Response
+## Response
 
 ```
 	{
@@ -203,12 +192,6 @@ Where:
 
 
 
-###### *See Also:*
-
-**WebAuthenticateUser, Authenticate2FA**
-
-
-
 
 
 
@@ -229,7 +212,7 @@ Where:
 
 
 
-### Request
+## Request
 
 ```
 	{
@@ -247,7 +230,7 @@ Where:
 
 
 
-### Response
+## Response
 
 ```
 	{
@@ -262,10 +245,4 @@ Where:
 | **String** | **Value**                                                    |
 | ---------- | ------------------------------------------------------------ |
 | result     | **Boolean.** Returns   *true* if the UserName is valid; *false* if not. See *“Standard Response Object and Common Error Codes”* on page 2 for an explanation of the other   string/value pairs. |
-
-
-
-###### *See Also*
-
-**RegisterNewUser**
 
