@@ -269,3 +269,13 @@ an error code. See “Standard Response Object and Common Error Codes” for mor
 	]
 ```
 
+
+
+Where:
+
+| **String** | **Value**                                                    |
+| ---------- | ------------------------------------------------------------ |
+| result     | **Boolean.**   If   the call has been successfully received by the Order Management   System, result is *true*; otherwise, it is *false*. |
+| errormsg   | **string.** A   successful receipt of the call returns *null*;   the *errormsg* parameter for an   unsuccessful call returns one of the following messages:   Not   Authorized (errorcode 20) Invalid Request (errorcode 100) Operation Failed   (errorcode 101) Server Error (errorcode 102)   Resource Not Found (errorcode 104) |
+| errorcode  | **integer.** A   successful receipt of the call returns 0. An unsuccessful receipt of the call   returns one of the *errorcodes* shown   in the *errormsg* list. |
+| detail     | **string.** Message   text that the system may send. The content of this parameter is usually null. |
