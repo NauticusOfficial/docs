@@ -23,28 +23,32 @@ The request for **GetAvailablePermissionList** does not require a UserId. It ret
 ```
 
 
+
 ### Response
 
 A successful response returns an alphabetically sorted list of all permissions that can be assigned by an administrator or superuser.
 
-```
-	[
 
-		“AccountReadOnly”,
-		“AddAccount”,
-		“AddBalanceReconciliationInfo”,
-		“AddDepositTicketAttachment”,
-		“AddEditAccountBadge”,
-		“AddEditExchange”,
-		“AddEditExchangeInstrument”,
-		“AddEditOMS”,
-		“AddEditOperatorEmail”,
-		“AddInstrument”,
-		“AddOperator”,
-		“AddOperatorOms”,
-	...
-	]
+
 ```
+    [
+      “AccountReadOnly”,
+      “AddAccount”,
+      “AddBalanceReconciliationInfo”,
+      “AddDepositTicketAttachment”,
+      “AddEditAccountBadge”,
+      “AddEditExchange”,
+      “AddEditExchangeInstrument”,
+      “AddEditOMS”,
+      “AddEditOperatorEmail”,
+      “AddInstrument”,
+      “AddOperator”,
+      “AddOperatorOms”,
+    ...
+    ]
+```
+
+
 
 
 
@@ -102,7 +106,6 @@ An unsuccessful call to **GetUserConfig** returns an error code. See *“Standar
 
 
 
-
 ## GetUserInfo
 
 Retrieves basic information about a user from the Order
@@ -117,7 +120,6 @@ No UserId is required in the request. The system assumes the current use.
 ```
 { }
 ```
-
 
 
 ### Response
