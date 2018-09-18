@@ -194,10 +194,6 @@ administrator or superuser.
 
 
 
-
-
-
-
 Where:
 
 | **String** | **Value**                                                    |
@@ -211,8 +207,6 @@ Where:
 
 A successful response returns an array of permission strings. An unsuccessful response returns
 
-
-
 an error code. See *“Standard Response Object and Common Error Codes”* for more information about error codes.
 
 
@@ -223,4 +217,55 @@ an error code. See *“Standard Response Object and Common Error Codes”* for m
 	]	
 ```
 
+
+
+
+
+
+
+## RemoveUserConfig
+
+
+
+Retrieves an array of permissions for the logged-in user. Permissions can be set only by an
+
+administrator or superuser.
+
+An administrator or superuser can set permissions for each user on an API-call by API-call basis, to allow for highly granular control. Common permission sets include *Trading, Deposit,* and *Withdrawal* (which allow trading, deposit of funds, and account withdrawals, respectively); or *AdminUI, UserOperator,* and *AccountOperator* (which allow control of the Order Management System, set of users, or an account). See [“Permissions” on page 4 ](#_bookmark7)for more information, but a complete discussion of permissions and their scope is beyond this API guide.
+
+
+
+### Request
+
+
+
+```
+	{
+		“UserId”: 1,
+	}
+```
+
+
+
+Where:
+
+| **String** | **Value**                                                    |
+| ---------- | ------------------------------------------------------------ |
+| UserId     | **integer.** The   ID of the user whose permission information will be returned. A user can only   retrieve his own permissions; an administrator can retrieve information about   the permissions of others. |
+
  
+
+### Response
+
+A successful response returns an array of permission strings. An unsuccessful response returns
+
+an error code. See “Standard Response Object and Common Error Codes” for more information about error codes.
+
+```
+	[
+		“Withdraw”,
+		“Deposit”,
+		“Trading”
+	]
+```
+
