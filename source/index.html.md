@@ -10,14 +10,11 @@ toc_footers:
 includes:
   - reg-auth
   - user-info-calls
+  - order-hand-calls
 
 search: true
 ---
 
 # Nauticus API Introduction
-
-Nauticus API Introduction.
-
-# Authentication
 
 
