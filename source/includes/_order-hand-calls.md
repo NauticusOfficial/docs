@@ -728,8 +728,6 @@ The response returns an array of transaction objects.
 
 Where:
 
- 
-
 | **String**      | **Value**                                                    |
 | --------------- | ------------------------------------------------------------ |
 | TransactionId   | **Integer.**   The   ID of the transaction.                  |
