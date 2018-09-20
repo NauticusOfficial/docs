@@ -543,56 +543,56 @@ The example shows an array of two buy executions.
 
 
 ```
-[
-  {
-    “TradeTimeMS”: -62135446664520,
-    “Fee”: 0,
-    “FeeProductId”: 0,
-    “OrderOriginator”: 1,
-    “OMSId”: 1,
-    “ExecutionId”: 1,
-    “TradeId”: 1,
-    “OrderId”: 1,
-    “AccountId”: 4,
-    “SubAccountId”: 0,
-    “ClientOrderId”: 0,
-    “InstrumentId”: 1,
-    “Side”: “Buy”,
-    “Quantity”: 1,
-    “RemainingQuantity”: 0,
-    “Price”: 100,
-    “Value”: 100,
-    “TradeTime”: 1501354796406,
-    “CounterParty”: null,
-    “OrderTradeRevision”: 1,
-    “Direction”: “NoChange”,
-    “IsBlockTrade”: false
-  },
-  {
-    “TradeTimeMS”: -62135446664520,
-    “Fee”: 0,
-    “FeeProductId”: 0,
-    “OrderOriginator”: 1,
-    “OMSId”: 1,
-    “ExecutionId”: 3,
-    “TradeId”: 2,
-    “OrderId”: 3,
-    “AccountId”: 4,
-    “SubAccountId”: 0,
-    “ClientOrderId”: 0,
-    “InstrumentId”: 1,
-    “Side”: “Buy”,
-    “Quantity”: 1,
-    “RemainingQuantity”: 0,
-    “Price”: 1,
-    “Value”: 1,
-    “TradeTime”: 1501354796418,
-    “CounterParty”: null,
-    “OrderTradeRevision”: 1,
-    “Direction”: “NoChange”,
-    “IsBlockTrade”: false
-  }
-]
+    [
+      {
+        “TradeTimeMS”: -62135446664520,
+        “Fee”: 0,
+        “FeeProductId”: 0,
+        “OrderOriginator”: 1,
+        “OMSId”: 1,
+        “ExecutionId”: 1,
+        “TradeId”: 1,
+        “OrderId”: 1,
+        “AccountId”: 4,
+        “SubAccountId”: 0,
+        “ClientOrderId”: 0,
+        “InstrumentId”: 1,
+        “Side”: “Buy”,
+        “Quantity”: 1,
+        “RemainingQuantity”: 0,
+        “Price”: 100,
+        “Value”: 100,
+        “TradeTime”: 1501354796406,
+        “CounterParty”: null,
+        “OrderTradeRevision”: 1,
+        “Direction”: “NoChange”,
+        “IsBlockTrade”: false
+      },
+      {
+        “TradeTimeMS”: -62135446664520,
+        “Fee”: 0,
+        “FeeProductId”: 0,
+        “OrderOriginator”: 1,
+        “OMSId”: 1,
+        “ExecutionId”: 3,
+        “TradeId”: 2,
+        “OrderId”: 3,
+        “AccountId”: 4,
+        “SubAccountId”: 0,
+        “ClientOrderId”: 0,
+        “InstrumentId”: 1,
+        “Side”: “Buy”,
+        “Quantity”: 1,
+        “RemainingQuantity”: 0,
+        “Price”: 1,
+        “Value”: 1,
+        “TradeTime”: 1501354796418,
+        “CounterParty”: null,
+        “OrderTradeRevision”: 1,
+        “Direction”: “NoChange”,
+        “IsBlockTrade”: false
+      }
+    ]
 ```
 
 
@@ -624,3 +624,123 @@ Where:
 | OrderTradeRevision | **integer.** This   value increments if the trade has changed. Default is 1. For example, if the   trade busts (fails to conclude), the trade will need to be modified and a   revision number then will apply. |
 | Direction          | **string.** Shows if this   trade has moved the book price up, down, or no change.   Values:   NoChange   UpTick DownTick |
 | IsBlockTrade       | **Boolean.** Returns true   if the trade was a reported trade; false otherwise. |
+
+
+
+
+
+
+
+## GetAccountTransactions
+
+
+
+Returns a list of transactions for a specific account on an Order Management System. The owner of
+
+the trading venue determines how long to retain order history before archiving.
+
+
+
+**Note:**  In this call, “Depth” refers not to the depth of the order book, but to the count of trades to report.
+
+
+
+
+
+### Request
+
+
+
+```
+    {
+      “OMSId”: 1,
+      “AccountId”: 1,
+      “Depth”: 200
+    }
+```
+
+
+
+
+
+Where:
+| **String** | **Value**                                                    |
+| ---------- | ------------------------------------------------------------ |
+| OMSId      | **integer.** The   ID of the Order Management System from which the account’s transactions will   be returned. |
+| AccountId  | **integer.** The   ID of the account for which transactions will be returned. If not specified,   the call returns transactions for the default account for the logged-in user. |
+| Depth      | **integer.**   The   number of transactions that will be returned, starting with the most   recent transaction. |
+
+
+
+
+
+### Response
+
+
+
+The response returns an array of transaction objects.
+
+
+
+```
+    [
+      {
+        {
+          “TransactionId”: 0,
+          “OMSId”: 0,
+          “AccountId”: 0,
+          “CR”: 0,
+          “DR”: 0,
+          “Counterparty”: 0,
+          “TransactionType”: {
+              “Options”: [
+              “Fee”,
+              “Trade”,
+              “Other”,
+              “Reverse”,
+              “Hold”
+            ]
+          },
+          “ReferenceId”: 0,
+          “ReferenceType”: {
+              “Options”: [
+              “Trade”,
+              “Deposit”,
+              “Withdraw”,
+              “Transfer”,
+              “OrderHold”,
+              “WithdrawHold”,
+              “DepositHold”,
+              “MarginHold”
+            ]
+          },
+          “ProductId”: 0,
+          “Balance”: 0,
+          “TimeStamp”: 0,
+        },
+      }
+    ]
+```
+
+
+
+
+
+Where:
+
+ 
+
+| **String**      | **Value**                                                    |
+| --------------- | ------------------------------------------------------------ |
+| TransactionId   | **Integer.**   The   ID of the transaction.                  |
+| OMSId           | **Integer.** The   ID of the Order Management System under which the requested transactions took   place. |
+| AccountId       | **Integer.**   The   single account under which the transactions took place. |
+| CR              | **real.**   Credit   entry for the account on the order book. Funds entering an account. |
+| DR              | **real.**   Debit   entry for the account on the order book. Funds leaving an account. |
+| Counterparty    | *long   integer.** Shows 0.                                  |
+| TransactionType | **string.**   One   of:   <br />Fee — transaction is payment of a fee   <br />Trade — transaction is a trade (most   usual entry)   <br />Other   — non-trading transactions such as deposits and withdrawals <br />Reverse — a hold   has been reversed by this transaction   <br />Hold — funds are held while a   transaction closes |
+| ReferenceId     | **long   integer.** The ID of the action or event that triggered this transaction. |
+| ReferenceType   | **string.** The type of action or event that   triggered this transaction. One of: <br />Trade   <br />Deposit   <br />Withdraw <br />Transfer <br />OrderHold <br />WithdrawHold <br />DepositHold <br />MarginHold |
+| ProductId       | **integer.** The   ID of the product on this account’s side of the transaction. For example, in   a dollars-for-BitCoin transaction, one side will have the product Dollar and   the other side will have the product BitCoin. See “Products and Instruments” for   more information about how these two items differ. Use **GetProduct** to   return information about a product based on its ID. |
+| Balance         | **real.**   The   balance in the account after the transaction. |
+| TimeStamp       | **long   integer.** Time at which the transaction took place, in POSIX format and   UTC   time zone. |
