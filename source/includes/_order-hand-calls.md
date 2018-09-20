@@ -388,3 +388,99 @@ Where:
 | FeeProduct        | **integer.** The ID of the   preferred fee product, if any. Defaults to 0. |
 | RefererId         | **integer.** Captures the   ID of the person who referred this account to the trading   venue, usually for marketing   purposes. |
 | SupportedVenueIds | **integer array.**   Comma-separated array. Reserved for future expansion. |
+
+
+
+
+
+
+
+## GetAccountPositions
+
+Retrieves a list of positions (balances) for a specific user account running under a specific Order Management System. The trading day runs from UTC Midnight to UTC Midnight. See “The Trading Day” for more information.
+
+ 
+
+### Request
+
+
+
+```
+    {
+      “AccountId”:4, 
+      “OMSId”: 1
+    }
+```
+
+
+
+
+
+Where:
+
+| **String** | **Value**                                                    |
+| ---------- | ------------------------------------------------------------ |
+| AccountId  | **integer.** The   ID of the authenticated user’s account on the Order Management System for   which positions will be returned. |
+| OMSId      | **integer.** The   ID of the Order Management System to which the user belongs. A user will   belong only to one OMS. |
+
+
+
+
+
+### Response
+
+The response returns an array of one or more positions for the account. This example response has returned two positions:
+
+
+
+```
+    [
+      { // first position
+        “OMSId”:1,
+        “AccountId”:4,
+        “ProductSymbol”:”BTC”
+        “ProductId”:1
+        “Amount”:0,
+        “Hold”:0,
+        “PendingDeposits”:0,
+        “PendingWithdraws”:0,
+        “TotalDayDeposits”:0,
+        “TotalDayWithdraws”:0,
+        “TotalMonthWithdraws”:0
+      },
+      { //second position
+        “OMSId”:1,
+        “AccountId”:4,
+        “ProductSymbol”:”USD”,
+        “ProductId”:2,
+        “Amount”:0,
+        “Hold”:0,
+        “PendingDeposits”:0,
+        “PendingWithdraws”:0,
+        “TotalDayDeposits”:0,
+        “TotalDayWithdraws”:0,
+        “TotalMonthWithdraws”:0
+      }
+    ]
+```
+
+
+
+
+
+Where:
+
+| **String**          | **Value**                                                    |
+| ------------------- | ------------------------------------------------------------ |
+| OMSId               | **Integer.**   The   ID of the Order Management System (OMS) to which the user   belongs. A user will only ever   belong to one Order Management System. |
+| AccountId           | **integer.**   Returns   the ID of the user’s account to which the positions belong. |
+| ProductSymbol       | **string.** The   symbol of the product on this account’s side of the trade. For example:   <br />BTC   — BitCoin <br />USD — US Dollar   <br />NZD — New Zealand Dollar   <br /><br />Many   other values are possible depending on the nature of the trading venue. “Products and Instruments” for the difference between these terms. |
+| ProductId           | **integer.** The   ID of the product being traded. The system assigns product IDs as they are   entered into [the system. See “Products and Instruments” on for the difference between products and instruments. Use **GetProduct** to return information about the product by its ID. |
+| Amount              | **real.**   Unit   amount of the product; for example, 10 or 138.5. |
+| Hold                | **real.** Amount   of currency held and not available for trade. A pending trade of 100 units at   $1 each will reduce the amount in the account available for trading by   $100. Amounts on hold cannot be   withdrawn while a trade is pending. |
+| PendingDeposits     | **real.**   Deposits   accepted but not yet cleared for trade. |
+| PendingWithdraws    | **real.** Withdrawals   acknowledged but not yet cleared from the account. Amounts in *PendingWithdraws* are not available for   trade. |
+| TotalDayDeposits    | **real.** Total   deposits on today’s date. The trading day runs between UTC Midnight and UTC   Midnight. |
+| TotalDayWithdraws   | **real.** Total   withdrawals on today’s date. The trading day runs between UTC Midnight and   UTC Midnight. |
+| TotalMonthWithdraws | **real.** Total   withdrawals during this month to date. The trading day runs between UTC   Midnight and UTC Midnight — likewise a month begins at UTC Midnight on the   first day of the month. |
+
