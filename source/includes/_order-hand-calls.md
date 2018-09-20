@@ -484,3 +484,143 @@ Where:
 | TotalDayWithdraws   | **real.** Total   withdrawals on today’s date. The trading day runs between UTC Midnight and   UTC Midnight. |
 | TotalMonthWithdraws | **real.** Total   withdrawals during this month to date. The trading day runs between UTC   Midnight and UTC Midnight — likewise a month begins at UTC Midnight on the   first day of the month. |
 
+
+
+
+
+
+
+## GetAccountTrades
+
+
+
+Requests the details on up to 200 past trade executions for a single specific user account and its Order Management System, starting at index *i*, where *i* is an integer identifying a specific execution in reverse order; that is, the most recent execution has an index of 0, and increments by one as trade executions recede into the past.
+
+The operator of the trading venue determines how long to retain an accessible trading history before archiving.
+
+
+
+
+
+### Request
+
+
+
+```
+    {
+      “AccountId”:4, 
+      “OMSId”: 1,
+      “StartIndex”:0, 
+      “Count”:2
+    }
+```
+
+
+
+
+
+Where:
+
+| **String** | **Value**                                                    |
+| ---------- | ------------------------------------------------------------ |
+| AccountId  | **integer.**   The   ID of the authenticated user’s account. |
+| OMSId      | **integer.** The   ID of the Order Management System to which the user belongs. A user will   belong only to one OMS. |
+| StartIndex | **integer.** The   starting index into the history of trades, from 0 (the most recent trade). |
+| Count      | **integer.**   The   number of trades to return. The system can return up to 200 trades. |
+
+
+
+
+
+
+
+### Response
+
+The response is an array of objects, each of which represents the account’s side of a trade (either buy or sell). 
+
+The example shows an array of two buy executions.
+
+
+
+```
+[
+  {
+    “TradeTimeMS”: -62135446664520,
+    “Fee”: 0,
+    “FeeProductId”: 0,
+    “OrderOriginator”: 1,
+    “OMSId”: 1,
+    “ExecutionId”: 1,
+    “TradeId”: 1,
+    “OrderId”: 1,
+    “AccountId”: 4,
+    “SubAccountId”: 0,
+    “ClientOrderId”: 0,
+    “InstrumentId”: 1,
+    “Side”: “Buy”,
+    “Quantity”: 1,
+    “RemainingQuantity”: 0,
+    “Price”: 100,
+    “Value”: 100,
+    “TradeTime”: 1501354796406,
+    “CounterParty”: null,
+    “OrderTradeRevision”: 1,
+    “Direction”: “NoChange”,
+    “IsBlockTrade”: false
+  },
+  {
+    “TradeTimeMS”: -62135446664520,
+    “Fee”: 0,
+    “FeeProductId”: 0,
+    “OrderOriginator”: 1,
+    “OMSId”: 1,
+    “ExecutionId”: 3,
+    “TradeId”: 2,
+    “OrderId”: 3,
+    “AccountId”: 4,
+    “SubAccountId”: 0,
+    “ClientOrderId”: 0,
+    “InstrumentId”: 1,
+    “Side”: “Buy”,
+    “Quantity”: 1,
+    “RemainingQuantity”: 0,
+    “Price”: 1,
+    “Value”: 1,
+    “TradeTime”: 1501354796418,
+    “CounterParty”: null,
+    “OrderTradeRevision”: 1,
+    “Direction”: “NoChange”,
+    “IsBlockTrade”: false
+  }
+]
+```
+
+
+
+
+
+Where:
+
+| **String**      | **Value**                                                    |
+| --------------- | ------------------------------------------------------------ |
+| TradeTimeMS     | **long integer.** The date and time   stamp of the trade in Microsoft tick format and UTC time zone. See “Time–and Date-Stamp Formats”. |
+| Fee             | **real.** The fee for   this trade in units and fractions of units (a $10 USD fee would be   10.00, a .5-BitCoin fee would be   0.5). |
+| FeeProductId    | **integer.** The   ID of the product that denominates the fee. Product types will vary on each   trading venue. See **GetProduct**. |
+| OrderOriginator | **integer.** The user ID   of the user who entered the order that caused the trade for   this account. (Multiple users can   have access to an account.) |
+| OMSId           | **integer.** The ID of the Order   Management System to which the user belongs. A user will belong only to one   OMS. |
+| ExecutionId     | **integer.** The ID of   this account’s side of the trade. Every trade has two sides. |
+| TradeId         | **integer.** The ID of the   overall trade.                  |
+| OrderId         | **long integer.**   The   ID of the order causing the trade. |
+| AccountId       | **integer.** The Account   ID that made the trade.           |
+| SubAccountId    | **integer.** Not currently   used.                           |
+| InstrumentId       | **long integer.** The ID of the instrument being traded. See **“Products and Instruments”** for the difference. See **GetInstrument** to   find information about this instrument by its ID. |
+| Side               | **string.** Buy or Sell 0 Buy   1   Sell   2 Short   (reserved for future use) 3 Unknown   (error condition) |
+| Quantity           | **real.** The unit   quantity of the trade.                  |
+| RemainingQuantity  | **integer.** The   number of units remaining to be traded by the order after this execution.   This number is not revealed to the other party in the trade. This value is   also known as “leave size” or “leave quantity.” |
+| Price              | **real.** The unit   price at which the instrument traded.   |
+| Value              | **real.** The total value of the deal. The   system calculates this as: unit price X quantity executed. |
+| TradeTime          | **integer.** The time at   which the trade took place, in POSIX format and UTC time   zone. See “Time–and Date-Stamp Formats”. |
+| CounterParty       | **long integer.**   Shows   0.                               |
+| OrderTradeRevision | **integer.** This   value increments if the trade has changed. Default is 1. For example, if the   trade busts (fails to conclude), the trade will need to be modified and a   revision number then will apply. |
+| Direction          | **string.** Shows if this   trade has moved the book price up, down, or no change.   Values:   NoChange   UpTick DownTick |
+| IsBlockTrade       | **Boolean.** Returns true   if the trade was a reported trade; false otherwise. |
