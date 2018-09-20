@@ -150,3 +150,108 @@ Where:
 | errorcode  | **integer.** A   successfully received call to cancel an order returns 0. An unsuccessfully   recieved call to cancel an order returns one of the errorcodes shown in the   errormsg list. |
 | detail     | **string.** Message   text that the system may send. The contents of this parameter are usually   null. |
 
+
+
+
+
+
+
+## CancelReplaceOrder
+
+
+
+**CancelReplaceOrder** is single API call that both cancels an existing order and replaces it with a new order. Canceling one order and replacing it with another also cancels the order’s priority in the order book. You can use **ModifyOrder** to preserve priority in the book; but **ModifyOrder** only allows a reduction in order quantity.
+
+
+
+**Note:  CancelReplaceOrder** sacrifices the order’s priority in the order book.
+
+
+
+### Request
+
+
+
+```
+    {
+      “OMSId”: 0,
+      “OrderIdToReplace”: 0,
+      “ClientOrdId”: 0,
+      “OrderType”: {
+        “Options”: [
+          “Unknown”,
+          “Market”,
+          “Limit”,
+          “StopMarket”,
+          “StopLimit”,
+          “TrailingStopMarket”,
+          “TrailingStopLimit”,
+          “BlockTrade”
+        ]
+      },
+      “Side”: {
+        “Options”: [
+          “Buy”,
+          “Sell”,
+          “Short”,
+          “Unknown”,
+        ]
+      },
+      “AccountId”: 0,
+      “InstrumentId”: 0,
+      “TrailingAmount”: 0,
+      “LimitOffset”: 0,
+      “DisplayQuantity”: 0,
+      “LimitPrice”: 0,
+      “StopPrice”: 0, // conditionally optional
+      “PegPriceType”: {
+        “Options”: [
+          “Unknown”,
+          “Last”,
+          “Bid”,
+          “Ask”,
+          “Midpoint”
+        ]
+      },
+      “TimeInForce”: {
+        “Options”: [
+          “Unknown”,
+          “GTC”,
+          “IOC”,
+          “FOK”,
+        ]
+      },
+      “OrderIdOCO”: 0,
+      “Quantity”: 0,
+    }
+```
+
+
+
+Where:
+
+| **String**       | **Value**                                                    |
+| ---------------- | ------------------------------------------------------------ |
+| OMSId            | **integer.** The ID of the Order   Management System on which the order is being canceled and replaced by   another order. |
+| OrderIdToReplace | **long integer.**   The   ID of the order to replace with this order. |
+| ClientOrderId    | **long integer.**   A   user-assigned ID for the new, replacement order (like a   purchase-order number assigned by a   company). This ID is useful for recognizing   future states related to this order.   *ClientOrderId* defaults to 0. |
+| OrderType        | **string.** The   type of the replacement order: See Order Types in “Contents common to many   API calls.   <br />0   Unknown   <br />1   Market   <br />2   Limit   <br />3   StopMarket   <br />4   StopLimit   <br />5   TrailingStopMarket   <br />6 TrailingStopLimit   <br />7   BlockTrade |
+| Side             | **string.** The side of the replacement order: <br />0   Buy   <br />1   Sell   <br />2   Short   (reserved for future use) <br />3   Unknown   (error condition) |
+| AccountId        | **integer.** The ID of the   account under which the original order was placed and the new order will be   placed. |
+| InstrumentId     | **integer.** The ID of the   instrument being traded.        |
+| TrailingAmount   | **real.** The   offset by which to trail the market in one of the trailing order types. Set   this to the current price of the market to ensure that the trailing offset is   the amount intended in a fast-moving market. |
+| LimitPrice       | **real.** The price at   which to execute the new order, if the order is a Limit order. |
+| StopPrice        | **real.** The   price at which to execute the new order, if the order is a Stop order (either   buy or sell). |
+| PegPriceType     | **string.** When entering a stop/trailing order, set *PegPriceType* to the type of price that pegs the stop.   <br />1   Last   <br />2   Bid   <br />3   Ask   <br />4   Midpoint |
+| TimeInForce | **string.**  The period   during which the new order is executable.   <br />0   Unknown (error condition)   <br />1   GTC good ’til canceled   <br />3 IOC immediate   or canceled   <br />4 FOK fill or   kill — fill the order immediately, or cancel it immediately   <br /><br />There may be other settings for   TimeInForce depending on the trading venue. |
+| OrderIdOCO  | **integer.** One   Cancels the Other — If the order being canceled in this call is order A, and   the order replacing order A in this call is order B, then *OrderIdOCO* refers to an order C that   is currently open. If order C executes, then order B is canceled. You can   also set up order C to watch order B in this way, but that will require an   update to order C. |
+| Quantity    | **real.** The amount of   the order (buy or sell).           |
+
+
+
+
+
+### Response
+
+
+
