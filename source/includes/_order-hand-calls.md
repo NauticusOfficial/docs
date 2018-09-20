@@ -253,5 +253,138 @@ Where:
 
 ### Response
 
+The response returns the new replacement order ID and echoes back any replacement client ID  you have supplied, along with the original order ID and the original client order ID.
 
 
+
+```
+    {
+      “ReplacementOrderId”: 1234,
+      “ReplacementClOrdId”: 1561,
+      “OrigOrderId”: 5678,
+      “OrigClOrdId”: 91011,
+    }
+```
+
+
+
+
+
+Where:
+
+| **String**         | **Value**                                                    |
+| ------------------ | ------------------------------------------------------------ |
+| ReplacementOrderId | **integer.**   The   order ID assigned to the replacement order by the server. |
+| ReplacementClOrdId | **long   integer.** Echoes the contents of the *ClientOrderId*   value from the request. |
+| OrigOrderId        | **integer.**   Echoes   *OrderIdToReplace*, which is the   original order you are replacing. |
+| OrigClOrdId        | **long integer.** Provides   the client order ID of the original order (not specified in the requesting   call). |
+
+
+
+
+
+
+
+## GetAccountInfo
+
+
+
+Returns detailed information about one specific account belonging to the authenticated user and existing on a specific Order Management System.
+
+
+
+### Request
+
+
+
+```
+    {
+      “OMSId”: 0,
+      “AccountId”: 0, 
+      “AccountHandle”: “”,
+    }
+```
+
+
+
+
+
+Where:
+
+| **String**    | **Value**                                                    |
+| ------------- | ------------------------------------------------------------ |
+| OMSId         | **integer.**   The   ID of the Order Management System on which the account exists. |
+| AccountId     | **integer.** The   ID of the account on the Order Management System for which information will   be returned. |
+| AccountHandle | **string.** *AccountHandle* is   a unique user-assigned name that is checked at create time by the Order   Management System. Alternate to Account ID. |
+
+
+
+
+
+### Response
+
+
+
+```
+    {
+      “OMSID”: 0,
+      “AccountId”: 0,
+      “AccountName”: “”,
+      “AccountHandle”: “”,
+      “FirmId”: “”,
+      “FirmName”: “”,
+      “AccountType”: {
+          “Options”: [
+          “Asset”,
+          “Liability”,
+          “ProfitLoss”
+        ]
+      },
+      “FeeGroupID”: 0,
+      “ParentID”: 0,
+      “RiskType”: {
+          “Options”: [
+          “Unknown”,
+          “Normal”,
+          “NoRiskCheck”,
+          “NoTrading”
+        ]
+      },
+      “VerificationLevel”: 0,
+      “FeeProductType”: {
+          “Options”: [
+          “BaseProduct”,
+          “SingleProduct”
+        ]
+      },
+      “FeeProduct”: 0,
+      “RefererId”: 0,
+      “SupportedVenueIds”: [
+        0
+      ],
+    }
+```
+
+
+
+Where:
+
+ 
+
+| **String**        | **Value**                                                    |
+| ----------------- | ------------------------------------------------------------ |
+| OMSId             | **integer.** The ID of the   Order Management System on which the account resides. |
+| AccountId         | **integer.** The ID of the   account for which information was requested. |
+| AccountName       | **string.** A non-unique   name for the account assigned by the user. |
+| AccountHandle     | **string.** *AccountHandle* is   a unique user-assigned name that is checked at create time by the Order   Management System to assure its uniqueness. |
+| FirmId            | **string.** An   arbitrary identifier assigned by a trading venue operator to a trading firm   as part of the initial company, user, and account set up process. For   example, Smith Financial Partners might have the ID SMFP. |
+| FirmName          | **string.** A longer,   non-unique version of the trading firm’s name; for example,   Smith Financial Partners. |
+| AccountType       | **string.** The type of the account for which   information is being returned. One of: <br />Asset   <br />Liability   <br />ProfitLoss   <br /><br />Responses for this string/value pair for Market Participants are almost exclusively Asset. |
+| FeeGroupID        | **integer.** Defines   account attributes relating to how fees are calculated and   assessed. Set by trading venue   operator. |
+| ParentID          | **integer.** Reserved for   future development.              |
+| RiskType          | **string.** One of:   <br />Unkown (an error condition)   <br />Normal   <br />NoRiskCheck <br />NoTrading   <br /><br />Returns Normal for virtually all   market participants. Other types indicate account   configurations assignable by the   trading venue operator. |
+| VerificationLevel | **integer.** Verification level   ID (how much verification does this account require) defined by and set by   the trading venue operator for this account. |
+| FeeProductType    | **string.** One of:   <br />BaseProduct   <br />SingleProduct   <br /><br />Trading   fees may be charged by a trading venue operator. This value shows whether   fees for this account’s trades are charged in the product being traded (*BaseProduct*, for example BitCoin) or   whether the account has a preferred fee-paying product (*SingleProduct*, for example USD) to use in all cases and   regardless of product being traded. |
+| FeeProduct        | **integer.** The ID of the   preferred fee product, if any. Defaults to 0. |
+| RefererId         | **integer.** Captures the   ID of the person who referred this account to the trading   venue, usually for marketing   purposes. |
+| SupportedVenueIds | **integer array.**   Comma-separated array. Reserved for future expansion. |
