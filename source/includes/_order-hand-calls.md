@@ -742,3 +742,87 @@ Where:
 | ProductId       | **integer.** The   ID of the product on this account’s side of the transaction. For example, in   a dollars-for-BitCoin transaction, one side will have the product Dollar and   the other side will have the product BitCoin. See “Products and Instruments” for   more information about how these two items differ. Use **GetProduct** to   return information about a product based on its ID. |
 | Balance         | **real.**   The   balance in the account after the transaction. |
 | TimeStamp       | **long   integer.** Time at which the transaction took place, in POSIX format and   UTC   time zone. |
+
+
+
+
+
+
+
+## GetInstrument
+**No authentication required**
+
+
+
+Retrieves the details of a specific instrument from the Order Management System of the trading venue. An instrument is a pair of exchanged products (or fractions of them) such as US dollars and ounces of gold. See “Products and Instruments” for more information about how products and instruments differ.
+
+
+
+### Request
+
+
+
+```
+    {
+      “OMSId”: 1,
+      “InstrumentId”: 1
+    }
+```
+
+
+
+
+
+Where:
+
+| **String**   | **Value**                                                    |
+| ------------ | ------------------------------------------------------------ |
+| OMSId        | **integer.** The   ID of the Order Management System from where the instrument is traded. |
+| InstrumentId | **long   integer.** The ID of the instrument.                |
+
+
+
+
+
+### Response
+
+
+
+```
+    {
+        “OMSId”: 0,
+        “InstrumentId”: 0,
+        “Symbol”: “”,
+        “Product1”: 0,
+        “Product1Symbol”: “”,
+        “Product2”: 0,
+        “Product2Symbol”: “”,
+        “InstrumentType”: {
+        “Options”: [ “Unknown”,
+        “Standard”
+        ]
+      },
+      “VenueInstrumentId”: 0,
+      “VenueId”: 0,
+      “SortIndex”: 0,
+      “SessionStatus”: {
+        “Options”: [ “Unknown”,
+        “Running”,
+        “Paused”,
+        “Stopped”,
+        “Starting”
+      ]
+      },
+      “PreviousSessionStatus”: {
+      “Options”: [ “Unknown”,
+      “Running”,
+      “Paused”,
+      “Stopped”,
+      “Starting”
+      ]
+      },
+      “SessionStatusDateTime”: “0001-01-01T05:00:00Z”,
+      “SelfTradePrevention”: false,
+      “QuantityIncrement”: 0,
+    }
+```
