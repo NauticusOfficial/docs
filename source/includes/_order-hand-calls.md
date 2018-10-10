@@ -861,3 +861,112 @@ Where:
 
 
 
+## GetInstruments
+**No authentication required**
+
+
+
+Retrieves an array of instrument objects describing all instruments available on a trading venue to the user. An instrument is a pair of exchanged products (or fractions of them) such as US dollars and ounces of gold. See “Products and Instruments” for more information about how products and instruments differ.
+
+
+
+### Request
+
+
+
+```
+    {
+      “OMSId”: 1
+    }
+```
+
+
+
+Where:
+
+| **String** | **Value**                                                    |
+| ---------- | ------------------------------------------------------------ |
+| OMSId      | **integer.** The   ID of the Order Management System on which the instruments are available. |
+
+
+
+
+
+### Response
+
+The response for GetInstruments is an array of objects describing all the instruments available to the authenticated user on the Order Management System.
+
+
+
+```
+    [
+      {
+        {
+        “OMSId”: 0,
+        “InstrumentId”: 0,
+        “Symbol”: “”,
+        “Product1”: 0,
+        “Product1Symbol”: “”,
+        “Product2”: 0,
+        “Product2Symbol”: “”,
+        “InstrumentType”: {
+          “Options”:   [
+            “Unknown”,
+            “Standard”
+            ]
+          },
+        “VenueInstrumentId”: 0,
+        “VenueId”: 0,
+        “SortIndex”: 0,
+        “SessionStatus”: {
+          “Options”:  [
+            “Unknown”,
+            “Running”,
+            “Paused”,
+            “Stopped”,
+            “Starting”
+            ]
+          },
+        “PreviousSessionStatus”: {
+          “Options”:   [
+            “Unknown”,
+            “Running”,
+            “Paused”,
+            “Stopped”,
+            “Starting”
+            ]
+          },
+          “SessionStatusDateTime”: “0001-01-01T05:00:00Z”,
+          “SelfTradePrevention”: false,
+          “QuantityIncrement”: 0,
+        },
+      }
+    ]
+```
+
+
+
+
+
+Where:
+
+| **String**        | **Value**                                                    |
+| ----------------- | ------------------------------------------------------------ |
+| OMSId             | **integer.** The ID of the Order   Management System on which the instrument is traded. |
+| InstrumentId      | **long integer.**   The   ID of the instrument.              |
+| Symbol            | **string.** Trading   symbol of the instrument.              |
+| Product1          | **integer.** The first   product comprising the instrument. For example, USD in a USD/   BitCoin instrument. |
+| Product1Symbol    | **string.** The symbol   for Product 1 on the trading venue. For example, USD. |
+| Product2          | **integer.** The second   product comprising the instrument. For example, BitCoin in   a USD/BitCoin instrument. |
+| Product2Symbol    | **string.** The symbol   for Product 2 on the trading venue. For example, BTC. |
+| InstrumentType    | **string.** The   type of the instrument. All instrument types currently are standard, an exchange of one product   for another (or unknown, an error condition), but this may expand   to new types in the future.   Unknown   Standard |
+| VenueInstrumentId | **long integer.**   If   the instrument trades on another trading venue to which the user   has access, this value is the instrument   ID on that other venue. See *VenueId*. |
+| VenueId           | **integer.** The ID of the   trading venue on which the instrument trades, if not this   venue. See *VenueInstrumentId*. |
+| SortIndex         | **integer.** The   numerical position in which to sort the returned list of instruments on a   visual display. |
+| SessionStatus     | **string.** Is the market   for this instrument currently open and operational? Returns   one of:   Unknown   Running Paused Stopped Starting |
+| PreviousSessionStatus | **string.** What was the   previous session status for this instrument? One of:   Unknown   Running Paused Stopped Starting |
+| SessionStatusDateTime | **string.** The time and   date at which the session status was reported, in ISO 8601   format. See “Time– and   Date-Stamp Formats”. |
+| SelfTradePrevention   | **Boolean.** An   account trading with itself still incurs fees. If this instrument prevents an   account from trading the instrument with itself, the value returns *true*; otherwise defaults to *false*. |
+| QuantityIncrement     | **integer.** The   number of decimal places for the smallest quantity of the instrument that can   trade (analogous to smallest lot size). For example, the smallest increment   of a US Dollar that can trade is 0.01 (one cent, or 2 decimal places).   Current maximum is 8 decimal places. The default is 0. |
+
+
