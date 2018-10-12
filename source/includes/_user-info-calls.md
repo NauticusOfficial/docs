@@ -141,9 +141,9 @@ administrator or superuser.
 
 
 ```json
-	{
-		"UserId": 1,
-	}
+    {
+      "UserId": 1,
+    }
 ```
 
 
@@ -166,10 +166,10 @@ an error code. See *"Standard Response Object and Common Error Codes"* for more 
 
 
 
-```
-	[
-		"Withdraw", "Deposit", "Trading"
-	]	
+```json
+    [
+      "Withdraw", "Deposit", "Trading"
+    ]	
 ```
 
 
@@ -195,11 +195,11 @@ An administrator or superuser can set permissions for each user on an API-call b
 
 
 ```json
-	{
-		"UserId": 1,
-    "UserName": "jsmith",
-    "Key": "Street Name"
-	}
+    {
+      "UserId": 1,
+      "UserName": "jsmith",
+      "Key": "Street Name"
+    }
 ```
 
 
@@ -221,12 +221,12 @@ A successful response returns an array of permission strings. An unsuccessful re
 
 an error code. See "Standard Response Object and Common Error Codes" for more information about error codes.
 
-```
-	[
-		"Withdraw",
-		"Deposit",
-		"Trading"
-	]
+```json
+    [
+      "Withdraw",
+      "Deposit",
+      "Trading"
+    ]
 ```
 
 
@@ -263,17 +263,17 @@ Where:
 A *Key* is always a string, but the associated *Value* of the *Key* can be of any data type.
 
 ```json
-	{
-		"UserId": 1,
-		"UserName": "jsmith",
-		"Config": [
-			"Key": "Street Name",
-			"Value": "Hillside Road",
-			"Key": "Suite Number",
-			"Value": 158,
-		…		
-		]		
-	}
+    {
+      "UserId": 1,
+      "UserName": "jsmith",
+      "Config": [
+        "Key": "Street Name",
+        "Value": "Hillside Road",
+        "Key": "Suite Number",
+        "Value": 158,
+      …		
+      ]		
+    }
 ```
 
  
@@ -301,12 +301,12 @@ A successful response from the OMS returns a *true* result, null *errormsg*, and
 
 
 ```json
-	{
-		"result": true,
-		"errormsg": "",
-		"errorcode": 0,
-		"detail": "",
-	}	
+    {
+      "result": true,
+      "errormsg": "",
+      "errorcode": 0,
+      "detail": "",
+    }	
 ```
 
 
@@ -334,7 +334,7 @@ Enters basic information about a user into the Order Management System. A user m
 
 Request
 
- 
+
 
 ```json
     {
