@@ -1,6 +1,147 @@
 # Registration and authentication
 
+<aside class="info">To send a session token to re-establish an interrupted session, send:</aside>
 
+## AddUserAPIKey
+
+### Request
+
+(*UserId* and *Permissions* simulated)
+
+```json
+    {
+      "UserId": 10,
+      "Permission": ["Trading","Withdraw","Deposit"]
+    }
+```
+
+Where:
+
+| **String** | **Value**                                                    |
+| :--------- | ------------------------------------------------------------ |
+| UserId   | **string.** The id of the user        |
+| Password   | **string**. What permission that this particular user should be given |
+
+
+### Response
+
+A successful response returns the following (with *UserId* and *Permissions* simulated):
+
+```json
+    {
+      "APIKEY":"<API_KEY>",
+      "APISecret":"<API_SECRET>",
+      "UserId":10,
+      "Permissions":["Trading","Withdraw","Deposit"]
+    }
+```
+
+Where:
+
+| **String**    | **Value**                                                    |
+| ------------- | ------------------------------------------------------------ |
+| APIKEY | **Boolean.** The API key that will be used to interact with Nauticus |
+| APISecret  | **String.** The secret key  |
+| UserId        | **Integer.** Returns the user ID   |
+| Permissions        | **Array.** Returns you back the list of permissions this user has be given.   |
+
+
+## AuthenticateUser
+
+
+### Request
+
+```json
+    {
+      "APIKey":"<API_KEY>",
+      "Signature":"HMAC(Nonce + UserId + API_KEY,APISecret)",
+      "UserId":"10",
+      "Nonce":"111111"
+    }
+```
+
+Where:
+
+| **String**    | **Value**                                                    |
+| ------------- | ------------------------------------------------------------ |
+| APIKEY | **String.** The API key |
+| Signature  | **String.** The signiture key, which is produced by combaining, Nonce, UserId, APIKey and APISecret  |
+| UserId        | **Integer.** The user's ID   |
+| Nounce        | **String.** The retunred Nounce   |
+
+
+
+
+### Response
+
+```json
+    {
+      "User":{
+        UserName,
+        Email,
+        EmailVerified,
+        AccountId,
+        OMSId,
+        Use2FA
+      },
+      "Authenticated":true,
+      "Requires2FA":false
+    }
+```
+
+Where:
+
+| **String**    | **Value**                                                    |
+| ------------- | ------------------------------------------------------------ |
+| User | **String.** The user object which will include the user's info |
+| User.UserName  | **String.** The username of the User  |
+| User.Email        | **String.** The user's email address   |
+| User.EmailVerified        | **Boolean** The user is verification status   |
+| User.OMSId        | **Integer.** The OMSId   |
+| User.Use2FA        | **Boolean** The user 2FA auth status  |
+| Authenticated        | **Boolean.** The user authencated status   |
+| Required2FA        | **Boolean** The user is required to use 2FA.  |
+
+
+## RemoveUserAPIKey
+
+### Request
+
+```json
+    {
+      "UserId":10,
+      "APIKey":"<API_KEY>"
+    }
+```
+
+Where:
+
+| **String**    | **Value**                                                    |
+| ------------- | ------------------------------------------------------------ |
+| UserId        | **Integer.** The user's ID   |
+| APIKEY | **String.** The API key |
+
+
+
+### Response
+
+```json
+    {
+      "result":true,
+      "errormsg":null,
+      "errorcode":0,
+      "detail":null
+    }
+```
+
+Where:
+
+| **String**    | **Value**                                                    |
+| ------------- | ------------------------------------------------------------ |
+| result | **Boolean.** The result was either successful or not  |
+| errormsg  | **null / String.** Error will be set to `null` if no error otherwise a message will be accompanying  |
+| errorcode        | **Integer.** Error code or `0` if no error   |
+| detail        | **null /String.** Detail about the call if it has failed otherwise `null`   |
 
 
 
@@ -8,17 +149,17 @@
 
 #### No authentication required
 
-`WebAuthenticateUser authenticates a user (logs in a user) for the current websocket session. You must call WebAuthenticateUser in order to use the calls in this document not otherwise shown as “No authentication required.”`
+`WebAuthenticateUser authenticates a user (logs in a user) for the current websocket session. You must call WebAuthenticateUser in order to use the calls in this document not otherwise shown as "No authentication required."`
 
 
 
-### Request	
+### Request
 
-```
-	{
-		“UserName”: “UserName”,
-		“Password”: “Password”
-	}
+```json
+    {
+      "UserName": "UserName",
+      "Password": "Password"
+    }
 ```
 
 
@@ -36,10 +177,10 @@ Where:
 
 Unsuccessful response:
 
-```
-	{
-		“Authenticated”: false
-	}
+```json
+    {
+      "Authenticated": false
+    }
 ```
 
 
@@ -54,11 +195,12 @@ Where:
 
 A successful response returns the following (with *UserId* and *SessionToken* simulated):
 
-```
-	{
-		“Authenticated”: true,
-		“SessionToken”:”7d0ccf3a-ae63-44f5-a409-2301d80228bc”, “UserId”: 1
-	}
+```json
+    {
+      "Authenticated": true,
+      "SessionToken": "7d0ccf3a-ae63-44f5-a409-2301d80228bc",
+      "UserId": 1
+    }
 ```
 
  
@@ -84,15 +226,11 @@ Where:
 
 `Completes the second part of a two-factor authentication by sending the authentication token from the non-Nauticus authentication system to the Order Management System.`
 
-```
-The call returns a  !"#$%&'($)* (+'( (+" ,-"# .)//$*/ $* +'- 0""* ',(+"*($&'("12 '*1 ' ()3"*4
-```
-
 
 
 ###### Here is how the two-factor authentication process works:
 
-1. Call **WebAuthenticateUser**. The response includes values for *TwoFAType* and *TwoFAToken*. For example, *TwoFAType* may return “Google,” and the *TwoFAToken* then returns a Google-appropriate token (which in this case would be a QR code).
+1. Call **WebAuthenticateUser**. The response includes values for *TwoFAType* and *TwoFAToken*. For example, *TwoFAType* may return "Google," and the *TwoFAToken* then returns a Google-appropriate token (which in this case would be a QR code).
 2. Enter the *TwoFAToken* into the two-factor authentication program, for example, Google
 
 Authenticator. The authentication program returns a different token.
@@ -105,10 +243,10 @@ program (shown as *YourCode* in the request example below).
 
 ### Request
 
-```
-	{
-		“Code”: “YourCode”
-	}
+```json
+    {
+      "Code": "YourCode"
+    }
 ```
 
 
@@ -123,10 +261,11 @@ Where:
 
 ### Response
 
-```
-	{
-		“Authenticated”: true, “SessionToken”: “YourSessionToken”
-	}
+```json
+    {
+      "Authenticated": true,
+      "SessionToken": "YourSessionToken"
+    }
 ```
 
 
@@ -139,15 +278,10 @@ Where:
 | SessionToken  | **string.** The   *SessionToken* is valid during the   current session for connections from the same IP address. If the connection   is interrupted during the session, you   can sign back in using the *SessionToken*   instead of repeating the full two-factor authentication process. A   session lasts one hour after last-detected activity or until logout. |
 
 
-
-```
-*To send a session token to re-establish an interrupted session, send:*
-```
-
-```
-	{
-		“SessionToken”: “YourSessionToken”
-	}
+```json
+    {
+      "SessionToken": "YourSessionToken"
+    }
 ```
 
 
@@ -175,13 +309,13 @@ Where:
 
 ### Response
 
-```
-	{
-		“result”:true,
-		“errormsg”:null,
-		“errorcode”:0,
-		“detail”:null
-	}
+```json
+    {
+      "result":true,
+      "errormsg":null,
+      "errorcode":0,
+      "detail":null
+    }
 ```
 
 
@@ -215,9 +349,9 @@ Where:
 
 ### Request
 
-```
+```json
 	{
-		“UserName”: “UserName”,
+		"UserName": "UserName",
 	}
 ```
 
@@ -233,10 +367,13 @@ Where:
 
 ### Response
 
-```
-	{
-		“result”: true, “errormsg”: null, “errorcode”: 0, “detail”: null,
-	}
+```json
+    {
+      "result": true,
+      "errormsg": null,
+      "errorcode": 0,
+      "detail": null,
+    }
 ```
 
 
@@ -245,5 +382,5 @@ Where:
 
 | **String** | **Value**                                                    |
 | ---------- | ------------------------------------------------------------ |
-| result     | **Boolean.** Returns   *true* if the UserName is valid; *false* if not. See *“Standard Response Object and Common Error Codes”* on page 2 for an explanation of the other   string/value pairs. |
+| result     | **Boolean.** Returns   *true* if the UserName is valid; *false* if not. See *"Standard Response Object and Common Error Codes"* on page 2 for an explanation of the other   string/value pairs. |
 

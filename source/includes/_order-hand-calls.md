@@ -6,7 +6,7 @@
 ## CancelAllOrders
 
 
-Cancels all open matching orders for the specified instrument, account, user (subject to permission level) or a combination of them on a specific Order Management System. User and account permissions govern cancellation actions. See “Permissions” . For more information on quotes and orders, see the explanation of “Quotes and Orders” .
+Cancels all open matching orders for the specified instrument, account, user (subject to permission level) or a combination of them on a specific Order Management System. User and account permissions govern cancellation actions. See "Permissions" . For more information on quotes and orders, see the explanation of "Quotes and Orders" .
 
 
 **Note:**      Multiple users may have access to the same account.
@@ -31,10 +31,10 @@ Cancels all open matching orders for the specified instrument, account, user (su
 
 ```
 	{
-		“AccountId”: 0, // conditionally optional 
-		“UserId”: 0, // conditionally optional 
-		“OMSId”: 0
-		“InstrumentId”: 0, // conditionally optional
+		"AccountId": 0, // conditionally optional 
+		"UserId": 0, // conditionally optional 
+		"OMSId": 0
+		"InstrumentId": 0, // conditionally optional
 	}
 ```
 
@@ -55,12 +55,12 @@ Where:
 
 The response to **CancelAllOrders** verifies that the call was received, not that the orders have been canceled successfully. Individual event updates to the user show orders as they cancel. To verify that an order has been canceled, use **GetOrderStatus** or **GetOpenOrders**. :
 
-```
+```json
     {
-      “result”: true, 
-      “errormsg”: “”, 
-      “errorcode”: 0, 
-      “detail”: “”,
+      "result": true, 
+      "errormsg": "", 
+      "errorcode": 0, 
+      "detail": "",
     }
 ```
 
@@ -86,7 +86,7 @@ Where:
 ## CancelOrder
 
 
-Cancels an open order that has been placed but has not yet been executed. Only a trading venue operator can cancel orders for another user or account. See the explanation of “Quotes and Orders” .
+Cancels an open order that has been placed but has not yet been executed. Only a trading venue operator can cancel orders for another user or account. See the explanation of "Quotes and Orders" .
 
 
 
@@ -98,12 +98,12 @@ If you specify the OMS ID and the Account ID, you must also specify at least the
 
 
 
-```
+```json
     {
-      “OMSId”: 0,
-      “AccountId”: 0 // conditionally optional
-      “ClientOrderId”: 0 // conditionally optional
-      “OrderId”: 0, // conditionally optional
+      "OMSId": 0,
+      "AccountId": 0 // conditionally optional
+      "ClientOrderId": 0 // conditionally optional
+      "OrderId": 0, // conditionally optional
     }
 ```
 
@@ -129,12 +129,12 @@ The response to **CancelOrder** verifies that the call was received, not that th
 
 
 
-```
+```json
     {
-      “result”: true,
-      “errormsg”: “”,
-      “errorcode”: 0,
-      “detail”: “”,
+      "result": true,
+      "errormsg": "",
+      "errorcode": 0,
+      "detail": "",
     }
 ```
 
@@ -172,57 +172,57 @@ Where:
 
 
 
-```
+```json
     {
-      “OMSId”: 0,
-      “OrderIdToReplace”: 0,
-      “ClientOrdId”: 0,
-      “OrderType”: {
-        “Options”: [
-          “Unknown”,
-          “Market”,
-          “Limit”,
-          “StopMarket”,
-          “StopLimit”,
-          “TrailingStopMarket”,
-          “TrailingStopLimit”,
-          “BlockTrade”
+      "OMSId": 0,
+      "OrderIdToReplace": 0,
+      "ClientOrdId": 0,
+      "OrderType": {
+        "Options": [
+          "Unknown",
+          "Market",
+          "Limit",
+          "StopMarket",
+          "StopLimit",
+          "TrailingStopMarket",
+          "TrailingStopLimit",
+          "BlockTrade"
         ]
       },
-      “Side”: {
-        “Options”: [
-          “Buy”,
-          “Sell”,
-          “Short”,
-          “Unknown”,
+      "Side": {
+        "Options": [
+          "Buy",
+          "Sell",
+          "Short",
+          "Unknown",
         ]
       },
-      “AccountId”: 0,
-      “InstrumentId”: 0,
-      “TrailingAmount”: 0,
-      “LimitOffset”: 0,
-      “DisplayQuantity”: 0,
-      “LimitPrice”: 0,
-      “StopPrice”: 0, // conditionally optional
-      “PegPriceType”: {
-        “Options”: [
-          “Unknown”,
-          “Last”,
-          “Bid”,
-          “Ask”,
-          “Midpoint”
+      "AccountId": 0,
+      "InstrumentId": 0,
+      "TrailingAmount": 0,
+      "LimitOffset": 0,
+      "DisplayQuantity": 0,
+      "LimitPrice": 0,
+      "StopPrice": 0, // conditionally optional
+      "PegPriceType": {
+        "Options": [
+          "Unknown",
+          "Last",
+          "Bid",
+          "Ask",
+          "Midpoint"
         ]
       },
-      “TimeInForce”: {
-        “Options”: [
-          “Unknown”,
-          “GTC”,
-          “IOC”,
-          “FOK”,
+      "TimeInForce": {
+        "Options": [
+          "Unknown",
+          "GTC",
+          "IOC",
+          "FOK",
         ]
       },
-      “OrderIdOCO”: 0,
-      “Quantity”: 0,
+      "OrderIdOCO": 0,
+      "Quantity": 0,
     }
 ```
 
@@ -235,7 +235,7 @@ Where:
 | OMSId            | **integer.** The ID of the Order   Management System on which the order is being canceled and replaced by   another order. |
 | OrderIdToReplace | **long integer.**   The   ID of the order to replace with this order. |
 | ClientOrderId    | **long integer.**   A   user-assigned ID for the new, replacement order (like a   purchase-order number assigned by a   company). This ID is useful for recognizing   future states related to this order.   *ClientOrderId* defaults to 0. |
-| OrderType        | **string.** The   type of the replacement order: See Order Types in “Contents common to many   API calls.   <br />0   Unknown   <br />1   Market   <br />2   Limit   <br />3   StopMarket   <br />4   StopLimit   <br />5   TrailingStopMarket   <br />6 TrailingStopLimit   <br />7   BlockTrade |
+| OrderType        | **string.** The   type of the replacement order: See Order Types in "Contents common to many   API calls.   <br />0   Unknown   <br />1   Market   <br />2   Limit   <br />3   StopMarket   <br />4   StopLimit   <br />5   TrailingStopMarket   <br />6 TrailingStopLimit   <br />7   BlockTrade |
 | Side             | **string.** The side of the replacement order: <br />0   Buy   <br />1   Sell   <br />2   Short   (reserved for future use) <br />3   Unknown   (error condition) |
 | AccountId        | **integer.** The ID of the   account under which the original order was placed and the new order will be   placed. |
 | InstrumentId     | **integer.** The ID of the   instrument being traded.        |
@@ -257,12 +257,12 @@ The response returns the new replacement order ID and echoes back any replacemen
 
 
 
-```
+```json
     {
-      “ReplacementOrderId”: 1234,
-      “ReplacementClOrdId”: 1561,
-      “OrigOrderId”: 5678,
-      “OrigClOrdId”: 91011,
+      "ReplacementOrderId": 1234,
+      "ReplacementClOrdId": 1561,
+      "OrigOrderId": 5678,
+      "OrigClOrdId": 91011,
     }
 ```
 
@@ -297,11 +297,10 @@ Returns detailed information about one specific account belonging to the authent
 
 
 
-```
+```json
     {
-      “OMSId”: 0,
-      “AccountId”: 0, 
-      “AccountHandle”: “”,
+      "OMSId": 0,
+      "AccountId": 0,
     }
 ```
 
@@ -325,41 +324,41 @@ Where:
 
 
 
-```
+```json
     {
-      “OMSID”: 0,
-      “AccountId”: 0,
-      “AccountName”: “”,
-      “AccountHandle”: “”,
-      “FirmId”: “”,
-      “FirmName”: “”,
-      “AccountType”: {
-          “Options”: [
-          “Asset”,
-          “Liability”,
-          “ProfitLoss”
+      "OMSID": 0,
+      "AccountId": 0,
+      "AccountName": "",
+      "AccountHandle": "",
+      "FirmId": "",
+      "FirmName": "",
+      "AccountType": {
+          "Options": [
+          "Asset",
+          "Liability",
+          "ProfitLoss"
         ]
       },
-      “FeeGroupID”: 0,
-      “ParentID”: 0,
-      “RiskType”: {
-          “Options”: [
-          “Unknown”,
-          “Normal”,
-          “NoRiskCheck”,
-          “NoTrading”
+      "FeeGroupID": 0,
+      "ParentID": 0,
+      "RiskType": {
+          "Options": [
+          "Unknown",
+          "Normal",
+          "NoRiskCheck",
+          "NoTrading"
         ]
       },
-      “VerificationLevel”: 0,
-      “FeeProductType”: {
-          “Options”: [
-          “BaseProduct”,
-          “SingleProduct”
+      "VerificationLevel": 0,
+      "FeeProductType": {
+          "Options": [
+          "BaseProduct",
+          "SingleProduct"
         ]
       },
-      “FeeProduct”: 0,
-      “RefererId”: 0,
-      “SupportedVenueIds”: [
+      "FeeProduct": 0,
+      "RefererId": 0,
+      "SupportedVenueIds": [
         0
       ],
     }
@@ -397,7 +396,7 @@ Where:
 
 ## GetAccountPositions
 
-Retrieves a list of positions (balances) for a specific user account running under a specific Order Management System. The trading day runs from UTC Midnight to UTC Midnight. See “The Trading Day” for more information.
+Retrieves a list of positions (balances) for a specific user account running under a specific Order Management System. The trading day runs from UTC Midnight to UTC Midnight. See "The Trading Day" for more information.
 
  
 
@@ -405,10 +404,10 @@ Retrieves a list of positions (balances) for a specific user account running und
 
 
 
-```
+```json
     {
-      “AccountId”:4, 
-      “OMSId”: 1
+      "AccountId":4, 
+      "OMSId": 1
     }
 ```
 
@@ -433,33 +432,33 @@ The response returns an array of one or more positions for the account. This exa
 
 
 
-```
+```json
     [
       { // first position
-        “OMSId”:1,
-        “AccountId”:4,
-        “ProductSymbol”:”BTC”
-        “ProductId”:1
-        “Amount”:0,
-        “Hold”:0,
-        “PendingDeposits”:0,
-        “PendingWithdraws”:0,
-        “TotalDayDeposits”:0,
-        “TotalDayWithdraws”:0,
-        “TotalMonthWithdraws”:0
+        "OMSId":1,
+        "AccountId":4,
+        "ProductSymbol":"BTC"
+        "ProductId":1
+        "Amount":0,
+        "Hold":0,
+        "PendingDeposits":0,
+        "PendingWithdraws":0,
+        "TotalDayDeposits":0,
+        "TotalDayWithdraws":0,
+        "TotalMonthWithdraws":0
       },
       { //second position
-        “OMSId”:1,
-        “AccountId”:4,
-        “ProductSymbol”:”USD”,
-        “ProductId”:2,
-        “Amount”:0,
-        “Hold”:0,
-        “PendingDeposits”:0,
-        “PendingWithdraws”:0,
-        “TotalDayDeposits”:0,
-        “TotalDayWithdraws”:0,
-        “TotalMonthWithdraws”:0
+        "OMSId":1,
+        "AccountId":4,
+        "ProductSymbol":"USD",
+        "ProductId":2,
+        "Amount":0,
+        "Hold":0,
+        "PendingDeposits":0,
+        "PendingWithdraws":0,
+        "TotalDayDeposits":0,
+        "TotalDayWithdraws":0,
+        "TotalMonthWithdraws":0
       }
     ]
 ```
@@ -474,8 +473,8 @@ Where:
 | ------------------- | ------------------------------------------------------------ |
 | OMSId               | **Integer.**   The   ID of the Order Management System (OMS) to which the user   belongs. A user will only ever   belong to one Order Management System. |
 | AccountId           | **integer.**   Returns   the ID of the user’s account to which the positions belong. |
-| ProductSymbol       | **string.** The   symbol of the product on this account’s side of the trade. For example:   <br />BTC   — BitCoin <br />USD — US Dollar   <br />NZD — New Zealand Dollar   <br /><br />Many   other values are possible depending on the nature of the trading venue. “Products and Instruments” for the difference between these terms. |
-| ProductId           | **integer.** The   ID of the product being traded. The system assigns product IDs as they are   entered into [the system. See “Products and Instruments” on for the difference between products and instruments. Use **GetProduct** to return information about the product by its ID. |
+| ProductSymbol       | **string.** The   symbol of the product on this account’s side of the trade. For example:   <br />BTC   — BitCoin <br />USD — US Dollar   <br />NZD — New Zealand Dollar   <br /><br />Many   other values are possible depending on the nature of the trading venue. "Products and Instruments" for the difference between these terms. |
+| ProductId           | **integer.** The   ID of the product being traded. The system assigns product IDs as they are   entered into [the system. See "Products and Instruments" on for the difference between products and instruments. Use **GetProduct** to return information about the product by its ID. |
 | Amount              | **real.**   Unit   amount of the product; for example, 10 or 138.5. |
 | Hold                | **real.** Amount   of currency held and not available for trade. A pending trade of 100 units at   $1 each will reduce the amount in the account available for trading by   $100. Amounts on hold cannot be   withdrawn while a trade is pending. |
 | PendingDeposits     | **real.**   Deposits   accepted but not yet cleared for trade. |
@@ -506,12 +505,12 @@ The operator of the trading venue determines how long to retain an accessible tr
 
 
 
-```
+```json
     {
-      “AccountId”:4, 
-      “OMSId”: 1,
-      “StartIndex”:0, 
-      “Count”:2
+      "AccountId":4, 
+      "OMSId": 1,
+      "StartIndex":0, 
+      "Count":2
     }
 ```
 
@@ -542,55 +541,55 @@ The example shows an array of two buy executions.
 
 
 
-```
+```json
     [
       {
-        “TradeTimeMS”: -62135446664520,
-        “Fee”: 0,
-        “FeeProductId”: 0,
-        “OrderOriginator”: 1,
-        “OMSId”: 1,
-        “ExecutionId”: 1,
-        “TradeId”: 1,
-        “OrderId”: 1,
-        “AccountId”: 4,
-        “SubAccountId”: 0,
-        “ClientOrderId”: 0,
-        “InstrumentId”: 1,
-        “Side”: “Buy”,
-        “Quantity”: 1,
-        “RemainingQuantity”: 0,
-        “Price”: 100,
-        “Value”: 100,
-        “TradeTime”: 1501354796406,
-        “CounterParty”: null,
-        “OrderTradeRevision”: 1,
-        “Direction”: “NoChange”,
-        “IsBlockTrade”: false
+        "TradeTimeMS": -62135446664520,
+        "Fee": 0,
+        "FeeProductId": 0,
+        "OrderOriginator": 1,
+        "OMSId": 1,
+        "ExecutionId": 1,
+        "TradeId": 1,
+        "OrderId": 1,
+        "AccountId": 4,
+        "SubAccountId": 0,
+        "ClientOrderId": 0,
+        "InstrumentId": 1,
+        "Side": "Buy",
+        "Quantity": 1,
+        "RemainingQuantity": 0,
+        "Price": 100,
+        "Value": 100,
+        "TradeTime": 1501354796406,
+        "CounterParty": null,
+        "OrderTradeRevision": 1,
+        "Direction": "NoChange",
+        "IsBlockTrade": false
       },
       {
-        “TradeTimeMS”: -62135446664520,
-        “Fee”: 0,
-        “FeeProductId”: 0,
-        “OrderOriginator”: 1,
-        “OMSId”: 1,
-        “ExecutionId”: 3,
-        “TradeId”: 2,
-        “OrderId”: 3,
-        “AccountId”: 4,
-        “SubAccountId”: 0,
-        “ClientOrderId”: 0,
-        “InstrumentId”: 1,
-        “Side”: “Buy”,
-        “Quantity”: 1,
-        “RemainingQuantity”: 0,
-        “Price”: 1,
-        “Value”: 1,
-        “TradeTime”: 1501354796418,
-        “CounterParty”: null,
-        “OrderTradeRevision”: 1,
-        “Direction”: “NoChange”,
-        “IsBlockTrade”: false
+        "TradeTimeMS": -62135446664520,
+        "Fee": 0,
+        "FeeProductId": 0,
+        "OrderOriginator": 1,
+        "OMSId": 1,
+        "ExecutionId": 3,
+        "TradeId": 2,
+        "OrderId": 3,
+        "AccountId": 4,
+        "SubAccountId": 0,
+        "ClientOrderId": 0,
+        "InstrumentId": 1,
+        "Side": "Buy",
+        "Quantity": 1,
+        "RemainingQuantity": 0,
+        "Price": 1,
+        "Value": 1,
+        "TradeTime": 1501354796418,
+        "CounterParty": null,
+        "OrderTradeRevision": 1,
+        "Direction": "NoChange",
+        "IsBlockTrade": false
       }
     ]
 ```
@@ -603,7 +602,7 @@ Where:
 
 | **String**      | **Value**                                                    |
 | --------------- | ------------------------------------------------------------ |
-| TradeTimeMS     | **long integer.** The date and time   stamp of the trade in Microsoft tick format and UTC time zone. See “Time–and Date-Stamp Formats”. |
+| TradeTimeMS     | **long integer.** The date and time   stamp of the trade in Microsoft tick format and UTC time zone. See "Time–and Date-Stamp Formats". |
 | Fee             | **real.** The fee for   this trade in units and fractions of units (a $10 USD fee would be   10.00, a .5-BitCoin fee would be   0.5). |
 | FeeProductId    | **integer.** The   ID of the product that denominates the fee. Product types will vary on each   trading venue. See **GetProduct**. |
 | OrderOriginator | **integer.** The user ID   of the user who entered the order that caused the trade for   this account. (Multiple users can   have access to an account.) |
@@ -613,13 +612,13 @@ Where:
 | OrderId         | **long integer.**   The   ID of the order causing the trade. |
 | AccountId       | **integer.** The Account   ID that made the trade.           |
 | SubAccountId    | **integer.** Not currently   used.                           |
-| InstrumentId       | **long integer.** The ID of the instrument being traded. See **“Products and Instruments”** for the difference. See **GetInstrument** to   find information about this instrument by its ID. |
+| InstrumentId       | **long integer.** The ID of the instrument being traded. See **"Products and Instruments"** for the difference. See **GetInstrument** to   find information about this instrument by its ID. |
 | Side               | **string.** Buy or Sell 0 Buy   1   Sell   2 Short   (reserved for future use) 3 Unknown   (error condition) |
 | Quantity           | **real.** The unit   quantity of the trade.                  |
-| RemainingQuantity  | **integer.** The   number of units remaining to be traded by the order after this execution.   This number is not revealed to the other party in the trade. This value is   also known as “leave size” or “leave quantity.” |
+| RemainingQuantity  | **integer.** The   number of units remaining to be traded by the order after this execution.   This number is not revealed to the other party in the trade. This value is   also known as "leave size" or "leave quantity." |
 | Price              | **real.** The unit   price at which the instrument traded.   |
 | Value              | **real.** The total value of the deal. The   system calculates this as: unit price X quantity executed. |
-| TradeTime          | **integer.** The time at   which the trade took place, in POSIX format and UTC time   zone. See “Time–and Date-Stamp Formats”. |
+| TradeTime          | **integer.** The time at   which the trade took place, in POSIX format and UTC time   zone. See "Time–and Date-Stamp Formats". |
 | CounterParty       | **long integer.**   Shows   0.                               |
 | OrderTradeRevision | **integer.** This   value increments if the trade has changed. Default is 1. For example, if the   trade busts (fails to conclude), the trade will need to be modified and a   revision number then will apply. |
 | Direction          | **string.** Shows if this   trade has moved the book price up, down, or no change.   Values:   NoChange   UpTick DownTick |
@@ -641,7 +640,7 @@ the trading venue determines how long to retain order history before archiving.
 
 
 
-**Note:**  In this call, “Depth” refers not to the depth of the order book, but to the count of trades to report.
+**Note:**  In this call, "Depth" refers not to the depth of the order book, but to the count of trades to report.
 
 
 
@@ -651,11 +650,11 @@ the trading venue determines how long to retain order history before archiving.
 
 
 
-```
+```json
     {
-      “OMSId”: 1,
-      “AccountId”: 1,
-      “Depth”: 200
+      "OMSId": 1,
+      "AccountId": 1,
+      "Depth": 200
     }
 ```
 
@@ -682,41 +681,41 @@ The response returns an array of transaction objects.
 
 
 
-```
+```json
     [
       {
         {
-          “TransactionId”: 0,
-          “OMSId”: 0,
-          “AccountId”: 0,
-          “CR”: 0,
-          “DR”: 0,
-          “Counterparty”: 0,
-          “TransactionType”: {
-              “Options”: [
-              “Fee”,
-              “Trade”,
-              “Other”,
-              “Reverse”,
-              “Hold”
+          "TransactionId": 0,
+          "OMSId": 0,
+          "AccountId": 0,
+          "CR": 0,
+          "DR": 0,
+          "Counterparty": 0,
+          "TransactionType": {
+              "Options": [
+              "Fee",
+              "Trade",
+              "Other",
+              "Reverse",
+              "Hold"
             ]
           },
-          “ReferenceId”: 0,
-          “ReferenceType”: {
-              “Options”: [
-              “Trade”,
-              “Deposit”,
-              “Withdraw”,
-              “Transfer”,
-              “OrderHold”,
-              “WithdrawHold”,
-              “DepositHold”,
-              “MarginHold”
+          "ReferenceId": 0,
+          "ReferenceType": {
+              "Options": [
+              "Trade",
+              "Deposit",
+              "Withdraw",
+              "Transfer",
+              "OrderHold",
+              "WithdrawHold",
+              "DepositHold",
+              "MarginHold"
             ]
           },
-          “ProductId”: 0,
-          “Balance”: 0,
-          “TimeStamp”: 0,
+          "ProductId": 0,
+          "Balance": 0,
+          "TimeStamp": 0,
         },
       }
     ]
@@ -739,7 +738,7 @@ Where:
 | TransactionType | **string.**   One   of:   <br />Fee — transaction is payment of a fee   <br />Trade — transaction is a trade (most   usual entry)   <br />Other   — non-trading transactions such as deposits and withdrawals <br />Reverse — a hold   has been reversed by this transaction   <br />Hold — funds are held while a   transaction closes |
 | ReferenceId     | **long   integer.** The ID of the action or event that triggered this transaction. |
 | ReferenceType   | **string.** The type of action or event that   triggered this transaction. One of: <br />Trade   <br />Deposit   <br />Withdraw <br />Transfer <br />OrderHold <br />WithdrawHold <br />DepositHold <br />MarginHold |
-| ProductId       | **integer.** The   ID of the product on this account’s side of the transaction. For example, in   a dollars-for-BitCoin transaction, one side will have the product Dollar and   the other side will have the product BitCoin. See “Products and Instruments” for   more information about how these two items differ. Use **GetProduct** to   return information about a product based on its ID. |
+| ProductId       | **integer.** The   ID of the product on this account’s side of the transaction. For example, in   a dollars-for-BitCoin transaction, one side will have the product Dollar and   the other side will have the product BitCoin. See "Products and Instruments" for   more information about how these two items differ. Use **GetProduct** to   return information about a product based on its ID. |
 | Balance         | **real.**   The   balance in the account after the transaction. |
 | TimeStamp       | **long   integer.** Time at which the transaction took place, in POSIX format and   UTC   time zone. |
 
@@ -754,7 +753,7 @@ Where:
 
 
 
-Retrieves the details of a specific instrument from the Order Management System of the trading venue. An instrument is a pair of exchanged products (or fractions of them) such as US dollars and ounces of gold. See “Products and Instruments” for more information about how products and instruments differ.
+Retrieves the details of a specific instrument from the Order Management System of the trading venue. An instrument is a pair of exchanged products (or fractions of them) such as US dollars and ounces of gold. See "Products and Instruments" for more information about how products and instruments differ.
 
 
 
@@ -762,10 +761,10 @@ Retrieves the details of a specific instrument from the Order Management System 
 
 
 
-```
+```json
     {
-      “OMSId”: 1,
-      “InstrumentId”: 1
+      "OMSId": 1,
+      "InstrumentId": 1
     }
 ```
 
@@ -788,45 +787,45 @@ Where:
 
 
 
-```
+```json
     {
-      “OMSId”: 0,
-      “InstrumentId”: 0,
-      “Symbol”: “”,
-      “Product1”: 0,
-      “Product1Symbol”: “”,
-      “Product2”: 0,
-      “Product2Symbol”: “”,
-      “InstrumentType”: {
-        “Options”: [
-          “Unknown”,
-          “Standard”
+      "OMSId": 0,
+      "InstrumentId": 0,
+      "Symbol": "",
+      "Product1": 0,
+      "Product1Symbol": "",
+      "Product2": 0,
+      "Product2Symbol": "",
+      "InstrumentType": {
+        "Options": [
+          "Unknown",
+          "Standard"
         ]
       },
-      “VenueInstrumentId”: 0,
-      “VenueId”: 0,
-      “SortIndex”: 0,
-      “SessionStatus”: {
-        “Options”: [
-          “Unknown”,
-          “Running”,
-          “Paused”,
-          “Stopped”,
-          “Starting”
+      "VenueInstrumentId": 0,
+      "VenueId": 0,
+      "SortIndex": 0,
+      "SessionStatus": {
+        "Options": [
+          "Unknown",
+          "Running",
+          "Paused",
+          "Stopped",
+          "Starting"
         ]
       },
-      “PreviousSessionStatus”: {
-        “Options”: [
-          “Unknown”,
-          “Running”,
-          “Paused”,
-          “Stopped”,
-          “Starting”
+      "PreviousSessionStatus": {
+        "Options": [
+          "Unknown",
+          "Running",
+          "Paused",
+          "Stopped",
+          "Starting"
         ]
       },
-      “SessionStatusDateTime”: “0001-01-01T05:00:00Z”,
-      “SelfTradePrevention”: false,
-      “QuantityIncrement”: 0,
+      "SessionStatusDateTime": "0001-01-01T05:00:00Z",
+      "SelfTradePrevention": false,
+      "QuantityIncrement": 0,
     }
 ```
 
@@ -851,7 +850,7 @@ Where:
 | SortIndex             | **integer.** The   numerical position in which to sort the returned list of instruments on a   visual display. Since this call returns information about a single   instrument, *SortIndex* should return   0. |
 | SessionStatus         | **string.** Is the market   for this instrument currently open and operational? Returns   one of:   <br />Unknown   <br />Running <br />Paused <br />Stopped <br />Starting |
 | PreviousSessionStatus | **string.** What was the   previous session status for this instrument? One of:   Unknown   <br />Running <br />Paused <br />Stopped <br />Starting |
-| SessionStatusDateTime | **string.**   The   time and date at which the session status was reported, in ISO 8601   format. See “Time– and Date-Stamp   Formats”. |
+| SessionStatusDateTime | **string.**   The   time and date at which the session status was reported, in ISO 8601   format. See "Time– and Date-Stamp   Formats". |
 | SelfTradePrevention   | **Boolean.** An   account trading with itself still incurs fees. If this instrument prevents an   account from trading the instrument with itself, the value returns *true*; otherwise defaults to *false*. |
 | QuantityIncrement     | **integer.** The   number of decimal places for the smallest quantity of the instrument that can   trade (analogous to smallest lot size). For example, the smallest increment   of a US Dollar that can trade is 0.01 (one cent, or 2 decimal places).   Current maximum is 8 decimal places. The default is 0. |
 
@@ -866,7 +865,7 @@ Where:
 
 
 
-Retrieves an array of instrument objects describing all instruments available on a trading venue to the user. An instrument is a pair of exchanged products (or fractions of them) such as US dollars and ounces of gold. See “Products and Instruments” for more information about how products and instruments differ.
+Retrieves an array of instrument objects describing all instruments available on a trading venue to the user. An instrument is a pair of exchanged products (or fractions of them) such as US dollars and ounces of gold. See "Products and Instruments" for more information about how products and instruments differ.
 
 
 
@@ -874,9 +873,9 @@ Retrieves an array of instrument objects describing all instruments available on
 
 
 
-```
+```json
     {
-      “OMSId”: 1
+      "OMSId": 1
     }
 ```
 
@@ -898,47 +897,47 @@ The response for GetInstruments is an array of objects describing all the instru
 
 
 
-```
+```json
     [
       {
         {
-        “OMSId”: 0,
-        “InstrumentId”: 0,
-        “Symbol”: “”,
-        “Product1”: 0,
-        “Product1Symbol”: “”,
-        “Product2”: 0,
-        “Product2Symbol”: “”,
-        “InstrumentType”: {
-          “Options”:   [
-            “Unknown”,
-            “Standard”
+        "OMSId": 0,
+        "InstrumentId": 0,
+        "Symbol": "",
+        "Product1": 0,
+        "Product1Symbol": "",
+        "Product2": 0,
+        "Product2Symbol": "",
+        "InstrumentType": {
+          "Options":   [
+            "Unknown",
+            "Standard"
             ]
           },
-        “VenueInstrumentId”: 0,
-        “VenueId”: 0,
-        “SortIndex”: 0,
-        “SessionStatus”: {
-          “Options”:  [
-            “Unknown”,
-            “Running”,
-            “Paused”,
-            “Stopped”,
-            “Starting”
+        "VenueInstrumentId": 0,
+        "VenueId": 0,
+        "SortIndex": 0,
+        "SessionStatus": {
+          "Options":  [
+            "Unknown",
+            "Running",
+            "Paused",
+            "Stopped",
+            "Starting"
             ]
           },
-        “PreviousSessionStatus”: {
-          “Options”:   [
-            “Unknown”,
-            “Running”,
-            “Paused”,
-            “Stopped”,
-            “Starting”
+        "PreviousSessionStatus": {
+          "Options":   [
+            "Unknown",
+            "Running",
+            "Paused",
+            "Stopped",
+            "Starting"
             ]
           },
-          “SessionStatusDateTime”: “0001-01-01T05:00:00Z”,
-          “SelfTradePrevention”: false,
-          “QuantityIncrement”: 0,
+          "SessionStatusDateTime": "0001-01-01T05:00:00Z",
+          "SelfTradePrevention": false,
+          "QuantityIncrement": 0,
         },
       }
     ]
@@ -965,8 +964,127 @@ Where:
 | SortIndex         | **integer.** The   numerical position in which to sort the returned list of instruments on a   visual display. |
 | SessionStatus     | **string.** Is the market   for this instrument currently open and operational? Returns   one of:   Unknown   Running Paused Stopped Starting |
 | PreviousSessionStatus | **string.** What was the   previous session status for this instrument? One of:   Unknown   Running Paused Stopped Starting |
-| SessionStatusDateTime | **string.** The time and   date at which the session status was reported, in ISO 8601   format. See “Time– and   Date-Stamp Formats”. |
+| SessionStatusDateTime | **string.** The time and   date at which the session status was reported, in ISO 8601   format. See "Time– and   Date-Stamp Formats". |
 | SelfTradePrevention   | **Boolean.** An   account trading with itself still incurs fees. If this instrument prevents an   account from trading the instrument with itself, the value returns *true*; otherwise defaults to *false*. |
 | QuantityIncrement     | **integer.** The   number of decimal places for the smallest quantity of the instrument that can   trade (analogous to smallest lot size). For example, the smallest increment   of a US Dollar that can trade is 0.01 (one cent, or 2 decimal places).   Current maximum is 8 decimal places. The default is 0. |
 
 
+
+## GetProduct
+
+Retrieves the details about a specific product on the trading venue. A product is an asset that is
+tradable or paid out.
+
+
+### Request
+
+```json
+    {
+      "OMSId": 1,
+      "ProductId": 1
+    }
+```
+
+Where:
+
+| **String** | **Value**                                                   |
+| ---------- | ------------------------------------------------------------ |
+| OMSId      | **Integer.** The ID of the Order Management System that includes the product. |
+| ProductId | **long Integer.**  The ID of the product (often a currency) on the specified Order Management System. |
+
+
+### Response
+
+```json
+    {
+      "OMSId": 1,
+      "ProductId": 1,
+      "Product": "",
+      "ProductFullName": "",
+      "ProductType": {
+        "Options": [
+        "Unknown",
+        "NationalCurrency",
+        "CryptoCurrency",
+        "Contract"
+        ]
+      },
+      "DecimalPlaces": 0,
+      "TickSize": 0,
+      "NoFees": false,
+    }
+```
+
+Where:
+
+| **String** | **Value**                                                    |
+| ---------- | ------------------------------------------------------------ |
+| OMSId      | **Integer.** The ID of the Order Management System that offers the product. |
+| ProductId  | **long Integer.** The ID of the product.
+| Product      | **String.** "Nickname" or shortened name of the product. For example, NZD (New Zealand Dollar). |
+| ProductFullName      | **String.** Full and official name of the product. For example, New Zealand Dollar. |
+| ProductType      | **String.**  The nature of the product. One of: 0 Unknown (an error condition), 1 NationalCurrency, 2 CryptoCurrency, 3 Contract |
+| DecimalPlaces      | **Integer.**  The number of decimal places in which the product is divided. For example, US Dollars are divided into 100 units, or 2 decimal places. Other products may be different. Burundi Francs use 0 decimal places and the Rial Omani uses 3. |
+| TickSize      | **Integer.** Minimum tradable quantity of the product. See also GetInstrument, where this value is called QuantityIncrement. For example, with a US Dollar, the minimal tradable quantity is $0.01. |
+| NoFees      | **Boolean.**  Shows whether trading the product incurs fees. The default is false; that is, if NoFees is false, fees will be incurred. If NoFees is true, no fees are incurred. |
+
+
+
+## GetProducts
+
+Returns an array of products available on the trading venue. A product is an asset that is tradable
+or paid out. For more information about the difference between products and instruments.
+
+
+### Request
+
+```json
+    {
+      "OMSId": 1
+    }
+```
+
+Where:
+
+| **String** | **Value**                                                    |
+| ---------- | ------------------------------------------------------------ |
+| OMSId      | **Integer.** The ID of the Order Management System for which the array of available
+products and currencies will be returned. |
+
+
+### Response
+
+```json
+    [
+      {
+        "OMSId": 0,
+        "ProductId": 0,
+        "Product": "",
+        "ProductFullName": "",
+        "ProductType": {
+          "Options": [
+          "Unknown",
+          "NationalCurrency",
+          "CryptoCurrency",
+          "Contract"
+          ]
+        },
+        "DecimalPlaces": 0,
+        "TickSize": 0,
+        "NoFees": false,
+      },
+    ]
+```
+
+Where:
+
+| **String** | **Value**                                                    |
+| ---------- | ------------------------------------------------------------ |
+| OMSId      | **Integer.** The ID of the Order Management System that offers the product. |
+| ProductId  | **long Integer.** The ID of the product.
+| Product      | **String.** "Nickname" or shortened name of the product. For example, NZD (New Zealand Dollar). |
+| ProductFullName      | **String.** Full and official name of the product. For example, New Zealand Dollar. |
+| ProductType      | **String.**  The nature of the product. One of: 0 Unknown (an error condition), 1 NationalCurrency, 2 CryptoCurrency, 3 Contract |
+| DecimalPlaces      | **Integer.**  The number of decimal places in which the product is divided. For example, US Dollars are divided into 100 units, or 2 decimal places. Other products may be different. Burundi Francs use 0 decimal places and the Rial Omani uses 3. |
+| TickSize      | **Integer.** Minimum tradable quantity of the product. See also GetInstrument, where this value is called QuantityIncrement. For example, with a US Dollar, the minimal tradable quantity is $0.01. |
+| NoFees      | **Boolean.**  Shows whether trading the product incurs fees. The default is false; that is, if NoFees is false, fees will be incurred. If NoFees is true, no fees are incurred. |
