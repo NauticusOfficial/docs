@@ -65,7 +65,7 @@ users. See "Permissions".
 
 No UserId is required in the request. The system assumes the current use.
 
-```
+```json
     { }
 ```
 
@@ -336,7 +336,7 @@ Request
 
  
 
-```
+```json
     {
       "UserId": 1,
       "UserName": "John Smith",
@@ -372,7 +372,7 @@ A successful response echoes the settings in the request, and provides additiona
 
 
 
-```
+```json
     {
       "UserId": 1,
       "UserName": "John Smith",
