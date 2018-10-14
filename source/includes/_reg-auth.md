@@ -2,7 +2,11 @@
 
 <aside class="info">To send a session token to re-establish an interrupted session, send:</aside>
 
+
+
 ## AddUserAPIKey
+
+<aside class="info">This call can only be valid when called over a valid session.</aside>
 
 ### Request
 
@@ -17,10 +21,10 @@
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY** | **VALUE**                                                    |
 | :--------- | ------------------------------------------------------------ |
-| UserId   | **string.** The id of the user        |
-| Password   | **string**. What permission that this particular user should be given |
+| UserId   | **String.** The id of the user        |
+| Permission   | **Array.** What permission(s) this API key should have access to. |
 
 
 ### Response
@@ -38,11 +42,11 @@ A successful response returns the following (with *UserId* and *Permissions* sim
 
 Where:
 
-| **String**    | **Value**                                                    |
+| **KEY**       | **VALUE**                                                    |
 | ------------- | ------------------------------------------------------------ |
-| APIKEY | **Boolean.** The API key that will be used to interact with Nauticus |
+| APIKEY | **String.** The API key that will be used to interact with Nauticus |
 | APISecret  | **String.** The secret key  |
-| UserId        | **Integer.** Returns the user ID   |
+| UserId        | **String.** Returns the user ID   |
 | Permissions        | **Array.** Returns you back the list of permissions this user has be given.   |
 
 
@@ -62,11 +66,11 @@ Where:
 
 Where:
 
-| **String**    | **Value**                                                    |
+| **KEY**    | **VALUE**                                                    |
 | ------------- | ------------------------------------------------------------ |
 | APIKEY | **String.** The API key |
 | Signature  | **String.** The signiture key, which is produced by combaining, Nonce, UserId, APIKey and APISecret  |
-| UserId        | **Integer.** The user's ID   |
+| UserId        | **String.** The user's ID   |
 | Nounce        | **String.** The retunred Nounce   |
 
 
@@ -77,12 +81,12 @@ Where:
 ```json
     {
       "User":{
-        UserName,
-        Email,
-        EmailVerified,
-        AccountId,
-        OMSId,
-        Use2FA
+        "UserName": "UserName",
+        "Email": "Email",
+        "EmailVerified": "EmailVerified",
+        "AccountId": "AccountId",
+        "OMSId": "OMSId",
+        "Use2FA": "Use2FA"
       },
       "Authenticated":true,
       "Requires2FA":false
@@ -91,7 +95,7 @@ Where:
 
 Where:
 
-| **String**    | **Value**                                                    |
+| **KEY**    | **VALUE**                                                    |
 | ------------- | ------------------------------------------------------------ |
 | User | **String.** The user object which will include the user's info |
 | User.UserName  | **String.** The username of the User  |
@@ -116,9 +120,9 @@ Where:
 
 Where:
 
-| **String**    | **Value**                                                    |
+| **KYE**    | **VALUE**                                                    |
 | ------------- | ------------------------------------------------------------ |
-| UserId        | **Integer.** The user's ID   |
+| UserId        | **String.** The user's ID   |
 | APIKEY | **String.** The API key |
 
 
@@ -136,7 +140,7 @@ Where:
 
 Where:
 
-| **String**    | **Value**                                                    |
+| **KEY**    | **VALUE**                                                    |
 | ------------- | ------------------------------------------------------------ |
 | result | **Boolean.** The result was either successful or not  |
 | errormsg  | **null / String.** Error will be set to `null` if no error otherwise a message will be accompanying  |
@@ -166,7 +170,7 @@ Where:
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY** | **VALUE**                                                    |
 | :--------- | ------------------------------------------------------------ |
 | UserName   | **string.** The name of the user, for example, jsmith        |
 | Password   | **string**. The user password. The user logs into a specific Order Management<br/>System via Secure Socket Layer (SSL and HTTPS). |
@@ -187,7 +191,7 @@ Unsuccessful response:
 
 Where:
 
-| **String**    | **Value**                                                    |
+| **KEY**    | **VALUE**                                                    |
 | ------------- | ------------------------------------------------------------ |
 | Authenticated | **Boolean.**   The   default response is *false* for an   unsuccessful authentication. |
 
@@ -207,11 +211,11 @@ A successful response returns the following (with *UserId* and *SessionToken* si
 
 Where:
 
-| **String**    | **Value**                                                    |
+| **KEY**    | **VALUE**                                                    |
 | ------------- | ------------------------------------------------------------ |
 | Authenticated | **Boolean.** The response is true for a successful authentication. |
-| SessionToken  | **string.** SessionToken uniquely identifies the session on the OMS. By returning the SessionToken in the response, the user can log in again if the session is interrupted without going through two-factor authentication. |
-| UserId        | **integer.** Returns the user ID of the authenticated user   |
+| SessionToken  | **String.** SessionToken uniquely identifies the session on the OMS. By returning the SessionToken in the response, the user can log in again if the session is interrupted without going through two-factor authentication. |
+| UserId        | **String.** Returns the user ID of the authenticated user   |
 
 
 
@@ -253,7 +257,7 @@ program (shown as *YourCode* in the request example below).
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY** | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
 | Code       | **string.**   Code   holds the token obtained from the other authentication source. |
 
@@ -272,17 +276,10 @@ Where:
 
 Where:
 
-| **String**    | **Value**                                                    |
+| **KEY**    | **VALUE**                                                    |
 | ------------- | ------------------------------------------------------------ |
 | Authenticated | **Boolean.**   A   successful authentication returns *true*.   Unsuccessful returns *false*. |
 | SessionToken  | **string.** The   *SessionToken* is valid during the   current session for connections from the same IP address. If the connection   is interrupted during the session, you   can sign back in using the *SessionToken*   instead of repeating the full two-factor authentication process. A   session lasts one hour after last-detected activity or until logout. |
-
-
-```json
-    {
-      "SessionToken": "YourSessionToken"
-    }
-```
 
 
 
@@ -322,7 +319,7 @@ Where:
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY** | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
 | result     | **Boolean.** A   successful logout returns true; and unsuccessful logout (an error   condition) returns false. |
 | errormsg   | **string.**  A   successful logout returns null; the errormsg parameter for an unsuccessful   logout returns one of the following messages:   Not   Authorized (errorcode 20) Invalid Request (errorcode 100) Operation Failed   (errorcode 101) Server Error (errorcode 102)   Resource Not Found (errorcode 104)   Not Authorized and Resource Not   Found are unlikely errors for a LogOut. |
@@ -359,7 +356,7 @@ Where:
 
 Where:
 
-| **String** | **Value**                                                  |
+| **KEY** | **VALUE**                                                  |
 | ---------- | ---------------------------------------------------------- |
 | UserName   | **string.**   The   name of the user, for example, jsmith. |
 
@@ -380,7 +377,7 @@ Where:
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY** | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
 | result     | **Boolean.** Returns   *true* if the UserName is valid; *false* if not. See *"Standard Response Object and Common Error Codes"* on page 2 for an explanation of the other   string/value pairs. |
 

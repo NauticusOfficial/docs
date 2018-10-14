@@ -26,10 +26,10 @@
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY**         | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
-| UserId     | **integer.** The ID of the user whose permission information will be returned. A user can only   retrieve his own permissions; an administrator can retrieve information about   the permissions of others. |
-| UserName   | **string.** The login name of the user; "jsmith."            |
+| UserId     | **String.** The ID of the user whose permission information will be returned. A user can only   retrieve his own permissions; an administrator can retrieve information about   the permissions of others. |
+| UserName   | **String.** The login name of the user; "jsmith."            |
 
 
 
@@ -106,22 +106,22 @@ error code. See *"Standard Response Object and Common Error Codes"*.
 
 Where:
 
-| **String**       | **Value**                                                    |
+| **KEY**          | **VALUE**                                                    |
 | ---------------- | ------------------------------------------------------------ |
-| UserId           | **integer.** ID number of   the user whose information is being set. |
-| UserName         | **string.** Log-in name   of the user; "jsmith".             |
-| Email            | **string.** Email address   of the user; ["person@company.com".](mailto:person@company.com) |
-| PasswordHash     | **string.** Not currently   used. Returns an empty string.   |
-| PendingEmailCode | **string.** Usually   contains an empty string. During the time that a new user has been sent a   registration email and before the user clicks the confirmation link, this   pair contains a GUID — a globally unique ID string.. |
+| UserId           | **String.** ID number of   the user whose information is being set. |
+| UserName         | **String.** Log-in name   of the user; "jsmith".             |
+| Email            | **String.** Email address   of the user; ["person@company.com".](mailto:person@company.com) |
+| PasswordHash     | **String.** Not currently   used. Returns an empty string.   |
+| PendingEmailCode | **String.** Usually   contains an empty string. During the time that a new user has been sent a   registration email and before the user clicks the confirmation link, this   pair contains a GUID — a globally unique ID string.. |
 | EmailVerified    | **Boolean.** Has your   organization verified this email as correct and operational?   *True*   if   yes; *false* if no. Defaults to *false*. |
-| AccountId        | **integer.** The ID of the   default account with which the user is associated. |
-| DateTimeCreated | **long integer.** The   date and time at which this user record was created, in ISO 8601 format. See "Time–   and Date-Stamp Formats". |
-| AffiliatedId        | **integer.** The ID of an   affiliated organization, if the user comes from an affiliated link. This is   set to 0 if the user it not associated with an affiliated organization. |
-| RefererId           | **integer.** Captures the   ID of the person who referred this account member to the   trading venue, usually for marketing   purposes. Returns 0 if no referrer. |
-| OMSId               | **integer.** The ID of the Order   Management System with which the user is associated. |
+| AccountId        | **Integer.** The ID of the   default account with which the user is associated. |
+| DateTimeCreated | **long Integer.** The   date and time at which this user record was created, in ISO 8601 format. See "Time–   and Date-Stamp Formats". |
+| AffiliatedId        | **Integer.** The ID of an   affiliated organization, if the user comes from an affiliated link. This is   set to 0 if the user it not associated with an affiliated organization. |
+| RefererId           | **Integer.** Captures the   ID of the person who referred this account member to the   trading venue, usually for marketing   purposes. Returns 0 if no referrer. |
+| OMSId               | **Integer.** The ID of the Order   Management System with which the user is associated. |
 | Use2FA              | **Boolean.** *True* if   the user must use two-factor authentication; *false* if the user does not need to use two-factor authentication.   Defaults to *false*. |
-| Salt                | **string.** Reserved for   future use. Currently returns an empty string. |
-| PendingCodeTime     | **long integer.**   A   date and time in ISO 8601 format. Reserved. See "Time– and Date-Stamp Formats". |
+| Salt                | **String.** Reserved for   future use. Currently returns an empty string. |
+| PendingCodeTime     | **long Integer.**   A   date and time in ISO 8601 format. Reserved. See "Time– and Date-Stamp Formats". |
 | ------------------- | ------------------------------------------------------------ |
 
 
@@ -151,18 +151,16 @@ administrator or superuser.
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY**         | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
-| UserId     | **integer.** The ID of the user whose permission information will be returned. A user can only   retrieve his own permissions; an administrator can retrieve information about   the permissions of others. |
+| UserId     | **String.** The ID of the user whose permission information will be returned. A user can only   retrieve his own permissions; an administrator can retrieve information about   the permissions of others. |
 
  
 
 ### Response
 
 
-A successful response returns an array of permission strings. An unsuccessful response returns
-
-an error code. See *"Standard Response Object and Common Error Codes"* for more information about error codes.
+A successful response returns an array of permission strings. An unsuccessful response returns an error code. See *"Standard Response Object and Common Error Codes"* for more information about error codes.
 
 
 
@@ -172,9 +170,11 @@ an error code. See *"Standard Response Object and Common Error Codes"* for more 
     ]	
 ```
 
+Where:
 
-
-
+| **KEY**         | **VALUE**                                                    |
+| ---------- | ------------------------------------------------------------ |
+| Permission     | **Array.** Returns an array of permission strings |
 
 
 
@@ -206,9 +206,9 @@ An administrator or superuser can set permissions for each user on an API-call b
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY**         | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
-| UserId     | **Integer.** The   ID of the user whose permission information will be returned. A user can only   retrieve his own permissions; an administrator can retrieve information about   the permissions of others. |
+| UserId     | **String.** The   ID of the user whose permission information will be returned. A user can only   retrieve his own permissions; an administrator can retrieve information about   the permissions of others. |
 | UserName     | **String.** The name of the user from whose record you’re deleting the custom key/
 value pair. |
 | UserName     | **String.** The name of the key/value pair to delete.. |
@@ -233,7 +233,7 @@ an error code. See "Standard Response Object and Common Error Codes" for more in
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY**         | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
 | result     | **Boolean.**   If   the call has been successfully received by the Order Management   System, result is *true*; otherwise, it is *false*. |
 | errormsg   | **string.** A   successful receipt of the call returns *null*;   the *errormsg* parameter for an   unsuccessful call returns one of the following messages:   Not   Authorized (errorcode 20) Invalid Request (errorcode 100) Operation Failed   (errorcode 101) Server Error (errorcode 102)   Resource Not Found (errorcode 104) |
@@ -280,10 +280,10 @@ A *Key* is always a string, but the associated *Value* of the *Key* can be of an
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY**         | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
-| UserId     | **integer.** The   ID of the user to whose record you’re adding the custom key/value pairs. |
-| UserName   | **string.** The   name of the user to whose record you’re adding the custom key/ value pairs. |
+| UserId     | **String.** The   ID of the user to whose record you’re adding the custom key/value pairs. |
+| UserName   | **String.** The   name of the user to whose record you’re adding the custom key/ value pairs. |
 | Config     | array of key/value pairs.   "Key" is always a string; but the associated *Value* of *Key*   can be of any data type. |
 
   
@@ -313,7 +313,7 @@ A successful response from the OMS returns a *true* result, null *errormsg*, and
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY**         | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
 | result     | **Boolean.**   If   the call has been successfully received by the Order Management   System, result is *true*; otherwise, it is *false*. |
 | errormsg   | **string.** A   successful receipt of the call returns *null*;   the *errormsg* parameter for an   unsuccessful call returns one of the following messages:   Not   Authorized (errorcode 20) Invalid Request (errorcode 100) Operation Failed   (errorcode 101) Server Error (errorcode 102)   Resource Not Found (errorcode 104) |
@@ -324,7 +324,7 @@ Where:
 
 
 
-SetUserInfo
+## SetUserInfo
 
 
 
@@ -332,7 +332,7 @@ Enters basic information about a user into the Order Management System. A user m
 
 
 
-Request
+### Request
 
 
 
@@ -352,14 +352,14 @@ Request
 
 Where:
 
-| **String**    | **Value**                                                    |
+| **KEY**    | **VALUE**                                                    |
 | ------------- | ------------------------------------------------------------ |
-| UserId        | **integer.**   The   ID of the user; set by the system when the user registers. |
-| UserName      | **string.**   User’s   name; "John Smith."                   |
-| Password      | **string.**   User’s   password.                             |
-| Email         | **string.**   User’s   email address.                        |
+| UserId        | **String.**   The   ID of the user; set by the system when the user registers. |
+| UserName      | **String.**   User’s   name; "John Smith."                   |
+| Password      | **String.**   User’s   password.                             |
+| Email         | **String.**   User’s   email address.                        |
 | EmailVerified | **Boolean.**   Send   *true* if you have verified the   user’s email; send *false* if you   have   not verified the email address.   Default is *false*. |
-| AccountId     | **integer.** The   ID of the default account with which the user is associated. A user may be   associated with more than one account, and more than one user may be   associated with a single account. An admin or superuser can specify   additional accounts. |
+| AccountId     | **Integer.** The   ID of the default account with which the user is associated. A user may be   associated with more than one account, and more than one user may be   associated with a single account. An admin or superuser can specify   additional accounts. |
 | Use2FA        | **Boolean.** Set   to *true* if this user must use   two-factor authentication; set to *false*   if this user does not need to user two-factor authentication. Default is *false*. |
 
  
@@ -397,19 +397,19 @@ A successful response echoes the settings in the request, and provides additiona
 
 Where:
 
-| **String**       | **Value**                                                    |
+| **KEY**       | **VALUE**                                                    |
 | ---------------- | ------------------------------------------------------------ |
-| UserId           | **integer.**   ID   number of the user whose information is being set. |
-| UserName         | **string.**   Log-in   name of the user; "jsmith".           |
-| Email            | **string.**   Email   address of the user; ["person@company.com".](mailto:person@company.com) |
-| PasswordHash     | **string.**   Not   currently used. Returns an empty string. |
-| PendingEmailCode | **string.** Usually   contains an empty string. Contains a GUID — a globally unique ID string —   during the time that a new user has been sent a registration email and before   the user clicks the confirmation link. |
+| UserId           | **String.**   ID   number of the user whose information is being set. |
+| UserName         | **String.**   Log-in   name of the user; "jsmith".           |
+| Email            | **String.**   Email   address of the user; ["person@company.com".](mailto:person@company.com) |
+| PasswordHash     | **String.**   Not   currently used. Returns an empty string. |
+| PendingEmailCode | **String.** Usually   contains an empty string. Contains a GUID — a globally unique ID string —   during the time that a new user has been sent a registration email and before   the user clicks the confirmation link. |
 | EmailVerified    | **Boolean.**   Has   your organization verified this email as correct and operational?   *True*   if   yes; *false* if no. Defaults to *false*. |
-| AccountId        | **integer.**   The   ID of the default account with which the user is associated. |
-| DateTimeCreated  | **long integer.** The   date and time at which this user record was created, in ISO 8601 format.  See *"Time– and Date-Stamp Formats".* |
-| AffiliatedId     | **integer.** The   ID of an affiliated organization, if the user comes from an affiliated link.   This is set to 0 if the user it not associated with an affiliated   organization. |
-| RefererId        | **integer.**   Captures   the ID of the person who referred this account member to the   trading venue, usually for marketing   purposes. Returns 0 if no referrer. |
-| OMSId            | **integer.** The   ID of the Order Management System with which the user is associated. |
+| AccountId        | **Integer.**   The   ID of the default account with which the user is associated. |
+| DateTimeCreated  | **long Integer.** The   date and time at which this user record was created, in ISO 8601 format.  See *"Time– and Date-Stamp Formats".* |
+| AffiliatedId     | **Integer.** The   ID of an affiliated organization, if the user comes from an affiliated link.   This is set to 0 if the user it not associated with an affiliated   organization. |
+| RefererId        | **Integer.**   Captures   the ID of the person who referred this account member to the   trading venue, usually for marketing   purposes. Returns 0 if no referrer. |
+| OMSId            | **Integer.** The   ID of the Order Management System with which the user is associated. |
 | Use2FA           | **Boolean.** *True* if   the user must use two-factor authentication; *false* if the user does not need to use two-factor authentication.   Defaults to *false*. |
-| Salt             | **string.**   Reserved   for future use. Currently returns an empty string. |
-| PendingCodeTime  | **long   integer.** A date and time in ISO 8601 format. Reserved. See *"Time– and Date-Stamp Formats".* |
+| Salt             | **String.**   Reserved   for future use. Currently returns an empty string. |
+| PendingCodeTime  | **long   Integer.** A date and time in ISO 8601 format. Reserved. See *"Time– and Date-Stamp Formats".* |

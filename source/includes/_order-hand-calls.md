@@ -42,12 +42,12 @@ Cancels all open matching orders for the specified instrument, account, user (su
 
 Where:
 
-| **String**   | **Value**                                                    |
+| **KEY**   | **VALUE**                                                    |
 | ------------ | ------------------------------------------------------------ |
-| AccountId    | **integer.** The account for   which all orders are being canceled. Conditionally optional. |
-| UserId       | **integer.** The ID of the user   whose orders are being canceled. Conditionally optional. |
-| OMSId        | **integer.** The Order   Management System under which the account operates. Required. |
-| InstrumentId | **long integer.** The ID of the instrument for which all orders are being cancelled Conditionally optional |
+| AccountId    | **Integer.** The account for   which all orders are being canceled. Conditionally optional. |
+| UserId       | **String.** The ID of the user   whose orders are being canceled. Conditionally optional. |
+| OMSId        | **Integer.** The Order   Management System under which the account operates. Required. |
+| InstrumentId | **long Integer.** The ID of the instrument for which all orders are being cancelled Conditionally optional |
 
 
 
@@ -68,7 +68,7 @@ The response to **CancelAllOrders** verifies that the call was received, not tha
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY** | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
 | result     | **Boolean.**   If   the call has been successfully received by the Order Management   System, result is *true*; otherwise, it is *false*. |
 | errormsg   | **string.** A   successful receipt of the call returns null; the *errormsg* parameter for an unsuccessful call returns one of the   following messages:   Not   Authorized (errorcode 20) Invalid Request (errorcode 100) Operation Failed   (errorcode 101) Server Error (errorcode 102)   Resource Not Found (errorcode 104) |
@@ -110,7 +110,7 @@ If you specify the OMS ID and the Account ID, you must also specify at least the
 
 Where:
 
-| **String**    | **Value**                                                    |
+| **KEY**    | **VALUE**                                                    |
 | ------------- | ------------------------------------------------------------ |
 | OMSId         | **integer.**   The   Order Management System on which the order exists. Required. |
 | AccountId     | **integer.** The   ID of account under which the order was placed. Conditionally optional. |
@@ -141,7 +141,7 @@ The response to **CancelOrder** verifies that the call was received, not that th
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY** | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
 | result     | **Boolean.**   Returns   true if the call to cancel the order has been successfully   received, otherwise returns false. |
 | errormsg   | **string.**   A successful receipt of a call to cancel an order returns   null; the errormsg parameter for an unsuccessful call to cancel an order   returns one of the following messages:   <br />Not   Authorized (errorcode 20) <br />Invalid Request (errorcode 100) <br />Operation Failed   (errorcode 101) <br />Server Error (errorcode 102)   <br />Resource Not Found (errorcode 104) |
@@ -228,7 +228,7 @@ Where:
 
 Where:
 
-| **String**       | **Value**                                                    |
+| **KEY**       | **VALUE**                                                    |
 | ---------------- | ------------------------------------------------------------ |
 | OMSId            | **integer.** The ID of the Order   Management System on which the order is being canceled and replaced by   another order. |
 | OrderIdToReplace | **long integer.**   The   ID of the order to replace with this order. |
@@ -270,7 +270,7 @@ The response returns the new replacement order ID and echoes back any replacemen
 
 Where:
 
-| **String**         | **Value**                                                    |
+| **KEY**         | **VALUE**                                                    |
 | ------------------ | ------------------------------------------------------------ |
 | ReplacementOrderId | **integer.**   The   order ID assigned to the replacement order by the server. |
 | ReplacementClOrdId | **long   integer.** Echoes the contents of the *ClientOrderId*   value from the request. |
@@ -308,7 +308,7 @@ Returns detailed information about one specific account belonging to the authent
 
 Where:
 
-| **String**    | **Value**                                                    |
+| **KEY**    | **VALUE**                                                    |
 | ------------- | ------------------------------------------------------------ |
 | OMSId         | **integer.**   The   ID of the Order Management System on which the account exists. |
 | AccountId     | **integer.** The   ID of the account on the Order Management System for which information will   be returned. |
@@ -368,7 +368,7 @@ Where:
 
  
 
-| **String**        | **Value**                                                    |
+| **KEY**         | **VALUE**                                                    |
 | ----------------- | ------------------------------------------------------------ |
 | OMSId             | **integer.** The ID of the   Order Management System on which the account resides. |
 | AccountId         | **integer.** The ID of the   account for which information was requested. |
@@ -415,7 +415,7 @@ Retrieves a list of positions (balances) for a specific user account running und
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY** | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
 | AccountId  | **integer.** The   ID of the authenticated user’s account on the Order Management System for   which positions will be returned. |
 | OMSId      | **integer.** The   ID of the Order Management System to which the user belongs. A user will   belong only to one OMS. |
@@ -467,7 +467,7 @@ The response returns an array of one or more positions for the account. This exa
 
 Where:
 
-| **String**          | **Value**                                                    |
+| **KEY**         | **VALUE**                                                    |
 | ------------------- | ------------------------------------------------------------ |
 | OMSId               | **Integer.**   The   ID of the Order Management System (OMS) to which the user   belongs. A user will only ever   belong to one Order Management System. |
 | AccountId           | **integer.**   Returns   the ID of the user’s account to which the positions belong. |
@@ -518,7 +518,7 @@ The operator of the trading venue determines how long to retain an accessible tr
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY** | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
 | AccountId  | **integer.**   The   ID of the authenticated user’s account. |
 | OMSId      | **integer.** The   ID of the Order Management System to which the user belongs. A user will   belong only to one OMS. |
@@ -598,7 +598,7 @@ The example shows an array of two buy executions.
 
 Where:
 
-| **String**      | **Value**                                                    |
+| **KEY**         | **VALUE**                                                    |
 | --------------- | ------------------------------------------------------------ |
 | TradeTimeMS     | **long integer.** The date and time   stamp of the trade in Microsoft tick format and UTC time zone. See "Time–and Date-Stamp Formats". |
 | Fee             | **real.** The fee for   this trade in units and fractions of units (a $10 USD fee would be   10.00, a .5-BitCoin fee would be   0.5). |
@@ -661,7 +661,8 @@ the trading venue determines how long to retain order history before archiving.
 
 
 Where:
-| **String** | **Value**                                                    |
+
+| **KEY**    | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
 | OMSId      | **integer.** The   ID of the Order Management System from which the account’s transactions will   be returned. |
 | AccountId  | **integer.** The   ID of the account for which transactions will be returned. If not specified,   the call returns transactions for the default account for the logged-in user. |
@@ -725,7 +726,7 @@ The response returns an array of transaction objects.
 
 Where:
 
-| **String**      | **Value**                                                    |
+| **KEY**         | **VALUE**                                                    |
 | --------------- | ------------------------------------------------------------ |
 | TransactionId   | **Integer.**   The   ID of the transaction.                  |
 | OMSId           | **Integer.** The   ID of the Order Management System under which the requested transactions took   place. |
@@ -772,7 +773,7 @@ Retrieves the details of a specific instrument from the Order Management System 
 
 Where:
 
-| **String**   | **Value**                                                    |
+| **KEY**   | **VALUE**                                                    |
 | ------------ | ------------------------------------------------------------ |
 | OMSId        | **integer.** The   ID of the Order Management System from where the instrument is traded. |
 | InstrumentId | **long   integer.** The ID of the instrument.                |
@@ -833,7 +834,7 @@ Where:
 
 Where:
 
-| **String**            | **Value**                                                    |
+| **KEY**         | **VALUE**                                                    |
 | --------------------- | ------------------------------------------------------------ |
 | OMSId                 | **integer.** The ID of the Order   Management System on which the instrument is traded. |
 | InstrumentId          | **long integer.**   The   ID of the instrument.              |
@@ -881,7 +882,7 @@ Retrieves an array of instrument objects describing all instruments available on
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY** | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
 | OMSId      | **integer.** The   ID of the Order Management System on which the instruments are available. |
 
@@ -947,7 +948,7 @@ The response for GetInstruments is an array of objects describing all the instru
 
 Where:
 
-| **String**        | **Value**                                                    |
+| **KEY**        | **VALUE**                                                    |
 | ----------------- | ------------------------------------------------------------ |
 | OMSId             | **integer.** The ID of the Order   Management System on which the instrument is traded. |
 | InstrumentId      | **long integer.**   The   ID of the instrument.              |
@@ -985,7 +986,7 @@ tradable or paid out.
 
 Where:
 
-| **String** | **Value**                                                   |
+| **KEY** | **VALUE**                                                   |
 | ---------- | ------------------------------------------------------------ |
 | OMSId      | **Integer.** The ID of the Order Management System that includes the product. |
 | ProductId | **long Integer.**  The ID of the product (often a currency) on the specified Order Management System. |
@@ -1015,7 +1016,7 @@ Where:
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY** | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
 | OMSId      | **Integer.** The ID of the Order Management System that offers the product. |
 | ProductId  | **long Integer.** The ID of the product.
@@ -1044,7 +1045,7 @@ or paid out. For more information about the difference between products and inst
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY** | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
 | OMSId      | **Integer.** The ID of the Order Management System for which the array of available
 products and currencies will be returned. |
@@ -1076,7 +1077,7 @@ products and currencies will be returned. |
 
 Where:
 
-| **String** | **Value**                                                    |
+| **KEY** | **VALUE**                                                    |
 | ---------- | ------------------------------------------------------------ |
 | OMSId      | **Integer.** The ID of the Order Management System that offers the product. |
 | ProductId  | **long Integer.** The ID of the product.
